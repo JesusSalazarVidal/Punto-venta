@@ -26,8 +26,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = () => {
+    Cookies.remove("token");
+    setIsAuthenticated(false);
+    setUsuario(null);
+  }
+
   return (
-    <AuthContext.Provider value={{signup, usuario, isAuthenticated}}>
+    <AuthContext.Provider 
+    value={
+      {signup, logout, usuario, isAuthenticated}
+      }>
       {children}
     </AuthContext.Provider>
   );

@@ -5,11 +5,16 @@ export const getProductos = async (req, res) =>{
     res.json(productos)
 };
 export const getProducto = async (req, res) =>{
-    const {id} = req.params;//guardamos el id 
-    const producto = await Producto.findById(id)
-
-    if(!producto) return res.status(404).json({message: 'Producto no encontrado'})
-    res.json(producto)
+    try {
+        const {id} = req.params;//guardamos el id 
+        const producto = await Producto.findById(id)
+    
+        if(!producto) return res.status(404).json({message: 'Producto no encontrado'})
+        res.json(producto)
+    } catch (error) {
+        return res.status(404).json({ message: "Producto no encontrado"})
+        
+    }
 };
 export const getProductosByNombreProducto = async (req, res) =>{};
 export const createProducto = async (req, res) =>{
