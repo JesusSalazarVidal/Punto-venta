@@ -1,5 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Context/AuthContext";
+import ProductPageForm from "./pages/ProductPageForm";
+import ProductPage from "./pages/ProductPage";
+import { ProductProvider } from "./Context/ProductContext";
+import Navbar from "./components/Navbar";
 
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
@@ -13,7 +17,9 @@ import ProtectedRoute from './ProtectedRoute'
 function App() {
   return (
     <AuthProvider>
+      <ProductProvider>
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
@@ -24,8 +30,12 @@ function App() {
             <Route path="/ingresos" element={<IngresosPage/>} />
             <Route path="/egresos" element={<EgresosPage />} />
           </Route>
+          <Route path="/crearProducto" element={<ProductPageForm />} />
+          <Route path="/obtenerProducto/:id" element={<ProductPageForm />} />
+          <Route path="/obtenerProductos" element={<ProductPage />} />
         </Routes>
       </BrowserRouter>
+      </ProductProvider>
     </AuthProvider>
   );
 }
