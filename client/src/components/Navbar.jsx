@@ -34,7 +34,7 @@ function Navbar() {
               <Link to="/login">Login</Link>
             </li>
             <li>
-              <Link to="/register" className="bg-indigo-500 px-4 py-1 rounded-sm">Reguister</Link>
+              <Link to="/register" className="bg-indigo-500 px-4 py-1 rounded-sm">Registrar</Link>
             </li>
             <li>
               <Link to="/crearProducto">CrearProducto</Link>
