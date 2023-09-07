@@ -14,7 +14,7 @@ import {crearEgresoSchema} from '../schemas/egreso.schema.js'
 const router = Router()
 
 router.get('/obtenerEgresos', authRequired, getEgresos);
-router.post('/crearEgreso', authRequired, validateSchema(crearEgresoSchema), crearEgreso)
+router.post('/crearEgreso',authRequired, crearEgreso)
 router.get('/obtenerEgreso/:id', authRequired, getEgreso)
 router.put('/actualizarEgreso/:id', authRequired, updateEgreso)
 router.delete('/eliminarEgreso/:id', authRequired, deleteEgreso)

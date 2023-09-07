@@ -39,6 +39,15 @@ function Navbar() {
             <li>
               <Link to="/register" className="bg-indigo-500 px-4 py-1 rounded-sm">Registrarse</Link>
             </li>
+            <li>
+              <Link to="/crearProducto">CrearProducto</Link>
+            </li>
+            <li>
+              <Link to="/obtenerProductos">Productos</Link>
+            </li>
+            <li>
+              <Link to="/" onClick={()=>{logout();}}>Logout</Link>
+            </li>
           </>
         )}
       </ul>

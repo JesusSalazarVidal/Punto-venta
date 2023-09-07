@@ -16,13 +16,19 @@ import VentaPage from "./pages/VentaPage";
 import VentaFormPage from "./pages/VentaFormPage";
 
 
-import ProtectedRoute from './ProtectedRoute'
+import ProtectedRoute from "./ProtectedRoute";
+import EgresoFormPage from "./pages/EgresoFormPage";
+import { EgresoProvider } from "./Context/EgresosContext";
+import { UsuarioProvider } from "./Context/UsuariosContext";
+import UsuariosPage from "./pages/UsuariosPage";
 
 function App() {
   return (
     <AuthProvider>
       <ProductProvider>
       <VentaProvider>
+      <EgresoProvider>
+          <UsuarioProvider>
       <BrowserRouter>
       <main className="container mx-auto px-5">
       <Navbar />
@@ -33,19 +39,29 @@ function App() {
 
           <Route element= {<ProtectedRoute/>} >
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/ingresos" element={<IngresosPage/>} />
-            <Route path="/egresos" element={<EgresosPage />} />
-          </Route>
-          <Route path="/crearProducto" element={<ProductPageForm />} />
-          <Route path="/obtenerProducto/:id" element={<ProductPageForm />} />
-          <Route path="/obtenerProductos" element={<ProductPage />} />
 
-          <Route path="/crearVenta" element={<VentaFormPage />} />
-          <Route path="/obtenerVenta/:id" element={<VentaFormPage />} />
-          <Route path="/obtenerVentas" element={<VentaPage />} />
+            <Route path="/ingresos" element={<IngresosPage/>} />
+
+            <Route path="/egresos/new" element={<EgresosFormPage />} />
+            <Route path="/actualizarEgreso/:id" element={<EgresoFormPage />}/>
+            <Route path="/egresos" element={<EgresosPage />} />
+
+            <Route path="/usuarios" element={<UsuariosPage/>} />
+            <Route path="/actualizarUsuario/:id" element={<RegisterPage/>} />
+
+            <Route path="/crearProducto" element={<ProductPageForm />} />
+            <Route path="/obtenerProducto/:id" element={<ProductPageForm />} />
+            <Route path="/obtenerProductos" element={<ProductPage />} />
+
+            <Route path="/crearVenta" element={<VentaFormPage />} />
+            <Route path="/obtenerVenta/:id" element={<VentaFormPage />} />
+            <Route path="/obtenerVentas" element={<VentaPage />} />
+          </Route>
         </Routes>
         </main>
         </BrowserRouter>
+        </UsuarioProvider>
+        </EgresoProvider>
       </VentaProvider>
       </ProductProvider>
     </AuthProvider>
