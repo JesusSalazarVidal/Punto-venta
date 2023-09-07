@@ -6,6 +6,7 @@ import cors from 'cors'
 import authRoutes from './routes/auth.routes.js'
 import productRoutes from './routes/product.routes.js'
 import egresoRoutes from './routes/egreso.routes.js'
+import ventaRoutes from './routes/venta.routes.js' 
 
 const app = express()
 
@@ -20,5 +21,6 @@ app.use(cookieParser())
 app.use('/api', authRoutes);
 app.use('/api', productRoutes);
 app.use('/api', egresoRoutes);
+app.use('/api', ventaRoutes);
 
 export default app

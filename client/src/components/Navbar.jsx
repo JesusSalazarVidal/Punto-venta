@@ -16,34 +16,28 @@ function Navbar() {
           <>
             <li>Welcome {usuario.nombreUsuario}</li>
             <li>
-              <Link to="/crearProducto">CrearProducto</Link>
+              <Link to="/crearProducto">Nuevo Producto</Link>
             </li>
             <li>
               <Link to="/obtenerProductos">Productos</Link>
             </li>
             <li>
-              <Link to="/" onClick={()=>{logout();}}>Logout</Link>
+              <Link to="/crearVenta">Nueva Venta</Link>
+            </li>
+            <li>
+              <Link to="/obtenerVentas">Ventas</Link>
+            </li>
+            <li>
+              <Link to="/" onClick={()=>{logout();}}>Salir</Link>
             </li>
           </>
         ) : (
           <>
-          <li>
-            hola
-          </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/login">Iniciar Sesion</Link>
             </li>
             <li>
-              <Link to="/register" className="bg-indigo-500 px-4 py-1 rounded-sm">Reguister</Link>
-            </li>
-            <li>
-              <Link to="/crearProducto">CrearProducto</Link>
-            </li>
-            <li>
-              <Link to="/obtenerProductos">Productos</Link>
-            </li>
-            <li>
-              <Link to="/" onClick={()=>{logout();}}>Logout</Link>
+              <Link to="/register" className="bg-indigo-500 px-4 py-1 rounded-sm">Registrarse</Link>
             </li>
           </>
         )}
