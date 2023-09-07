@@ -21,11 +21,6 @@ function RegisterPage() {
     useEffect(()=>{
       if(isAuthenticated) navigate("/")
     }, [isAuthenticated])
-  
-
-    const onSubmit = handleSubmit(async(values)=>{
-        signup(values)
-    })
 
   useEffect(() => {
     async function loadUsuario() {
