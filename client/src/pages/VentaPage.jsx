@@ -15,15 +15,15 @@ function VentaPage() {
   if (venta.length === 0) return (<h1>No Hay Ventas</h1>)
 
   return (
-    <div className="grid ">
-        {venta.map((vent) => {
+    <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-2 ">
+        {venta.map((vent, index) => {
           // Busca el producto correspondiente por su productId
-          const pro = producto.find((product) => product._id === '64ee2d1ecacd5a7680346964');
-          console.log(pro)
+          const resultado = producto.find((product) => product._id === vent.productos);
+          console.log(resultado)
           // Asegúrate de que el producto exista antes de mostrarlo
-          if (pro) {
+          if (resultado) {
             return (
-              <VentaCard vent={vent} pro={pro} key={vent._id}/>
+              <VentaCard vent={vent} key={index} resultado={resultado}/>
             );
           }
           return null; // Ignora ventas con productos no encontrados

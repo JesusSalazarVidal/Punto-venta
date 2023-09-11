@@ -18,7 +18,7 @@ function LoginPage() {
   });
 
   useEffect(() => {
-    if (isAuthenticated) navigate('./obtenerProductos') 
+    if (isAuthenticated) navigate('/obtenerProductos') 
   }, [isAuthenticated])
 
   return (

@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Context/AuthContext";
-import ProductPageForm from "./pages/ProductPageForm";
-import ProductPage from "./pages/ProductPage";
 import { ProductProvider } from "./Context/ProductContext";
 import { VentaProvider } from "./Context/VentasContext";
+import { EgresoProvider } from "./Context/EgresosContext";
+import { UsuarioProvider } from "./Context/UsuariosContext";
+
 import Navbar from "./components/Navbar";
 
 import HomePage from "./pages/HomePage";
@@ -14,13 +15,12 @@ import IngresosPage from "./pages/IngresosPage";
 import EgresosPage from "./pages/EgresosPage";
 import VentaPage from "./pages/VentaPage";
 import VentaFormPage from "./pages/VentaFormPage";
-
+import ProductPageForm from "./pages/ProductPageForm";
+import ProductPage from "./pages/ProductPage";
+import EgresoFormPage from "./pages/EgresoFormPage";
+import UsuariosPage from "./pages/UsuariosPage";
 
 import ProtectedRoute from "./ProtectedRoute";
-import EgresoFormPage from "./pages/EgresoFormPage";
-import { EgresoProvider } from "./Context/EgresosContext";
-import { UsuarioProvider } from "./Context/UsuariosContext";
-import UsuariosPage from "./pages/UsuariosPage";
 
 function App() {
   return (
@@ -42,7 +42,7 @@ function App() {
 
             <Route path="/ingresos" element={<IngresosPage/>} />
 
-            <Route path="/egresos/new" element={<EgresosFormPage />} />
+            <Route path="/egresos/new" element={<EgresoFormPage />} />
             <Route path="/actualizarEgreso/:id" element={<EgresoFormPage />}/>
             <Route path="/egresos" element={<EgresosPage />} />
 
