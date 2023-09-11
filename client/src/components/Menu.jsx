@@ -29,10 +29,10 @@ function Menu() {
               <Link to="/egresos" className="hover:bg-pink-500 m-3 p-1">Egresos</Link>
             </li>
             <li className="mb-2">
-              <Link to="/" className="hover:bg-pink-500 m-3 p-1">Nuevo Ingreso</Link>
+              <Link to="/crearIngreso" className="hover:bg-pink-500 m-3 p-1">Nuevo Ingreso</Link>
             </li>
             <li className="mb-2">
-              <Link to="/" className="hover:bg-pink-500 m-3 p-1">Ingresos</Link>
+              <Link to="/ingresos" className="hover:bg-pink-500 m-3 p-1">Ingresos</Link>
             </li>
             <li className="mb-2">
               <Link

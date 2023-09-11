@@ -15,11 +15,15 @@ import IngresosPage from "./pages/IngresosPage";
 import EgresosPage from "./pages/EgresosPage";
 import VentaPage from "./pages/VentaPage";
 import VentaFormPage from "./pages/VentaFormPage";
-
+import IngresosFormPage from './pages/IngresosFormPage'
+import ProductPageForm from './pages/ProductPageForm'
+import ProductPage from './pages/ProductPage'
 
 import ProtectedRoute from "./ProtectedRoute";
 import EgresoFormPage from "./pages/EgresoFormPage";
 import UsuariosPage from "./pages/UsuariosPage";
+import { IngresoProvider } from "./Context/IngresosContext";
+import UsuarioEditar from "./pages/UsuarioEditar";
 
 function App() {
   return (
@@ -43,7 +47,7 @@ function App() {
 
                         <Route path="/ingresos" element={<IngresosPage />} />
 
-            <Route path="/egresos/new" element={<EgresosFormPage />} />
+            <Route path="/egresos/new" element={<EgresoFormPage/>} />
             <Route path="/actualizarEgreso/:id" element={<EgresoFormPage />}/>
             <Route path="/egresos" element={<EgresosPage />} />
 
@@ -72,9 +76,9 @@ function App() {
                           element={<VentaFormPage />}
                         />
                         <Route path="/obtenerVentas" element={<VentaPage />} />
-                        <Route path="/crearIngreso" element={<IngresoFormPage/>} />
+                        <Route path="/crearIngreso" element={<IngresosFormPage/>} />
                         <Route path="/obtenerIngresos" element={<IngresosPage/>} />
-                        <Route path="/actualizarIngreso/:id" element={<IngresoFormPage/>} />
+                        <Route path="/actualizarIngreso/:id" element={<IngresosFormPage/>} />
                       </Route>
                     </Routes>
                   </main>
