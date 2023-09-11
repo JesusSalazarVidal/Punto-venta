@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Context/AuthContext";
-import ProductPageForm from "./pages/ProductPageForm";
-import ProductPage from "./pages/ProductPage";
 import { ProductProvider } from "./Context/ProductContext";
 import { VentaProvider } from "./Context/VentasContext";
+import { EgresoProvider } from "./Context/EgresosContext";
+import { UsuarioProvider } from "./Context/UsuariosContext";
+
 import Navbar from "./components/Navbar";
 
 import HomePage from "./pages/HomePage";
@@ -15,14 +16,10 @@ import EgresosPage from "./pages/EgresosPage";
 import VentaPage from "./pages/VentaPage";
 import VentaFormPage from "./pages/VentaFormPage";
 
+
 import ProtectedRoute from "./ProtectedRoute";
 import EgresoFormPage from "./pages/EgresoFormPage";
-import { EgresoProvider } from "./Context/EgresosContext";
-import { UsuarioProvider } from "./Context/UsuariosContext";
 import UsuariosPage from "./pages/UsuariosPage";
-import { IngresoProvider } from "./Context/IngresosContext";
-import IngresoFormPage from "./pages/IngresosFormPage";
-import UsuarioEditar from "./pages/UsuarioEditar";
 
 function App() {
   return (
@@ -46,15 +43,9 @@ function App() {
 
                         <Route path="/ingresos" element={<IngresosPage />} />
 
-                        <Route
-                          path="/egresos/new"
-                          element={<EgresoFormPage />}
-                        />
-                        <Route
-                          path="/actualizarEgreso/:id"
-                          element={<EgresoFormPage />}
-                        />
-                        <Route path="/egresos" element={<EgresosPage />} />
+            <Route path="/egresos/new" element={<EgresosFormPage />} />
+            <Route path="/actualizarEgreso/:id" element={<EgresoFormPage />}/>
+            <Route path="/egresos" element={<EgresosPage />} />
 
                         <Route path="/usuarios" element={<UsuariosPage />} />
                         <Route
