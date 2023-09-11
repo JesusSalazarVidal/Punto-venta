@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import { useEgresos } from "../Context/EgresosContext";
+import { useIngresos } from "../Context/IngresosContext";
 
-function Tabla({ data }) {
+function Tabla({ data, tipo }) {
   //Verificamos si el arreglo de datos esta vacio o es nulo
   if (!data.length === 0) return <h1>No hay datos siponibles</h1>;
-  const {deleteEgreso} = useEgresos()
+
+  const { deleteEgreso } = useEgresos();
+
+  const { deleteIngreso } = useIngresos();
+
   return (
     <div className="relative flex mx-6 shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -33,16 +38,29 @@ function Tabla({ data }) {
               >
                 {registro.cantidad}
               </th>
-              <td className="px-6 py-4"> {new Date(registro.fecha).toLocaleDateString()} </td>
+              <td className="px-6 py-4">
+                {new Date(registro.fecha).toLocaleDateString()}
+              </td>
               <td className="px-6 py-4 text-center">
                 <Link
-                  to={`/actualizarEgreso/${registro._id}`}
+                  to={
+                    tipo === "Egresos"
+                      ? `/actualizarEgreso/${registro._id}`
+                      : `/actualizarIngreso/${registro._id}`
+                  }
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
                   Editar
                 </Link>
+
                 <button
-                  onClick={()=>{deleteEgreso(registro._id)}}
+                  onClick={() => {
+                    if (tipo == "Egresos") {
+                      deleteEgreso(registro._id);
+                    } else {
+                      deleteIngreso(registro._id);
+                    }
+                  }}
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline px-3"
                 >
                   Eliminar

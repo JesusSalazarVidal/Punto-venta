@@ -5,7 +5,7 @@ import {
   deleteUsuarioRequest,
   getUsuarioRequest,
   getUsuariosRequest,
-  updateUsuarioRequest,
+  updateUsuarioRequest
 } from "../api/usuarios";
 
 const UsuarioContext = createContext();

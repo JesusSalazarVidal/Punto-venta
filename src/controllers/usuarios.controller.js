@@ -20,10 +20,9 @@ export const getUsuario = async (req, res) => {
     }
   };
 export const updateUsuario = async (req, res) => {
-    const {nombre, nombreUsuario, password, huella} = req.body
+    const {Id} = req.params
     try {
-      const usuarioUpdate = await Usuario.findOneAndUpdate(
-        {_id: req.params.id}, {nombre, nombreUsuario, password, huella},
+      const usuarioUpdate = await Usuario.findOneAndUpdate({_id: Id}, req.body,
         { new: true }
       );
   

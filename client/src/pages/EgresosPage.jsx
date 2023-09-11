@@ -14,7 +14,7 @@ function EgresosPage() {
   return (
     <div>
       <h1 className="text-3xl font-bold text-center mb-3">Egresos</h1>
-      <Tabla data={egresos}></Tabla>
+      <Tabla data={egresos} tipo={'Egresos'}></Tabla>
     </div>
   );
 }
