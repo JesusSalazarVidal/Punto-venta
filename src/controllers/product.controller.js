@@ -1,4 +1,5 @@
-import Producto from "../models/producto.model.js";
+import Producto from '../models/producto.model.js'
+import multer from 'multer';
 
 export const getProductos = async (req, res) => {
   const productos = await Producto.find();

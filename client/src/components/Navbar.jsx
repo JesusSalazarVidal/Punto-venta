@@ -6,7 +6,7 @@ import { useState } from "react";
 import { AiTwotoneSetting } from "react-icons/ai";
 
 function Navbar() {
-  const { isAuthenticated, logout, usuario } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -31,13 +31,7 @@ function Navbar() {
         </>
       ) : (
         <>
-          <Link to="/login" className="">
-            Iniciar Sesion
-          </Link>
-
-          <Link to="/register" className="">
-            Registrarse
-          </Link>
+          INSOEL
         </>
       )}
     </nav>

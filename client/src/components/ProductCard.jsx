@@ -59,10 +59,12 @@ function ProductCard({ product }) {
       <header className="flex justify-between">
         <h1 className="text-2xl font-bold">{product.nombre}</h1>
       </header>
-      <p className="text-slate-500">{product.tipo}</p>
-      <p className="text-slate-500">{product.precio}</p>
+      <p className="text-slate-800">Tipo: {product.tipo}</p>
+      <p className="text-slate-800">Precio: ${product.precio}</p>
     </div>
   );
 }
 
 export default ProductCard;
+
+//<p>{new Date(product.fecha).toLocaleDateString()}</p>

@@ -6,6 +6,7 @@ import { EgresoProvider } from "./Context/EgresosContext";
 import { UsuarioProvider } from "./Context/UsuariosContext";
 
 import Navbar from "./components/Navbar";
+import SidebarMenu from "./components/SidebarMenu";
 
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
@@ -15,9 +16,9 @@ import IngresosPage from "./pages/IngresosPage";
 import EgresosPage from "./pages/EgresosPage";
 import VentaPage from "./pages/VentaPage";
 import VentaFormPage from "./pages/VentaFormPage";
-import IngresosFormPage from './pages/IngresosFormPage'
-import ProductPageForm from './pages/ProductPageForm'
-import ProductPage from './pages/ProductPage'
+import IngresosFormPage from "./pages/IngresosFormPage";
+import ProductPageForm from "./pages/ProductPageForm";
+import ProductPage from "./pages/ProductPage";
 
 import ProtectedRoute from "./ProtectedRoute";
 import EgresoFormPage from "./pages/EgresoFormPage";
@@ -35,10 +36,11 @@ function App() {
               <IngresoProvider>
                 <BrowserRouter>
                   <main className="container mx-auto px-5">
-                    <Navbar />
+                   
+                    <SidebarMenu />
                     <Routes>
                       <Route path="/login" element={<LoginPage />} />
-                      <Route path="/" element={<LoginPage/>} />
+                      <Route path="/" element={<LoginPage />} />
                       <Route path="/register" element={<RegisterPage />} />
                       <Route path="/index" element={<HomePage/>}/>
                     
@@ -77,9 +79,18 @@ function App() {
                           element={<VentaFormPage />}
                         />
                         <Route path="/obtenerVentas" element={<VentaPage />} />
-                        <Route path="/crearIngreso" element={<IngresosFormPage/>} />
-                        <Route path="/obtenerIngresos" element={<IngresosPage/>} />
-                        <Route path="/actualizarIngreso/:id" element={<IngresosFormPage/>} />
+                        <Route
+                          path="/crearIngreso"
+                          element={<IngresosFormPage />}
+                        />
+                        <Route
+                          path="/obtenerIngresos"
+                          element={<IngresosPage />}
+                        />
+                        <Route
+                          path="/actualizarIngreso/:id"
+                          element={<IngresosFormPage />}
+                        />
                       </Route>
                     </Routes>
                   </main>
