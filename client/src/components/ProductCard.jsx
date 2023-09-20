@@ -7,7 +7,7 @@ function ProductCard({ product }) {
   const { deleteProducto } = useProduct();
 
   return (
-    <div className="bg-pink-500 hover:bg-pink-300 max-w-md w-full p-10 rounded-md border-2 border-pink-700">
+    <div className="p-4 bg-pink-500 hover:bg-pink-300 max-w-md w-full rounded-md border-2 border-pink-700">
       <header className="flex justify-between">
         <h1 className="text-2xl font-bold">{product.nombre}</h1>
         <div className="flex gap-x-2 items-center">
@@ -27,11 +27,12 @@ function ProductCard({ product }) {
           </Link>
         </div>
       </header>
-      <p className="text-slate-500">{product.tipo}</p>
-      <p className="text-slate-500">{product.precio}</p>
-      <p>{new Date(product.fecha).toLocaleDateString()}</p>
+      <p className="text-slate-800">Tipo: {product.tipo}</p>
+      <p className="text-slate-800">Precio: ${product.precio}</p>
     </div>
   );
 }
 
 export default ProductCard;
+
+//<p>{new Date(product.fecha).toLocaleDateString()}</p>

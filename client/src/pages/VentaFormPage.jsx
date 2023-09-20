@@ -41,11 +41,11 @@ function VentaFormPage() {
   });
 
   return (
-    <div className="flex h-[calc(100vh-100px)] justify-center items-center  bg-pink-400">
+    <div className="flex h-[calc(100vh-100px)] sm:ml-64 justify-center items-center  bg-pink-400">
       <div className="w-full max-w-xs">
         <form
           onSubmit={onSubmit}
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 "
+          className="bg-pink-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 "
         >
           <div className="mb-4">
             <h1 className="text-center font-black"> AGREGAR VENTA </h1>
@@ -72,6 +72,7 @@ function VentaFormPage() {
               Cantidad
             </label>
             <input
+            type="text"
               {...register("cantidad")}
               className="shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
             ></input>

@@ -1,6 +1,10 @@
+import LoginPage from "./LoginPage"
+
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <div>
+      <LoginPage/>
+    </div>
   )
 }
 
