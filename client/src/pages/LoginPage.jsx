@@ -52,7 +52,7 @@ function LoginPage() {
             <p className="text-red-500">La contraseña es requerida</p>
           )}
 
-          <button type="submit">Iniciar sesión</button>
+          <button type="submit" className="bg-green-400 rounded font-bold justify-center">Iniciar sesión</button>
         </form>
         <p className="flex gap-x-2 justify-between">
           No tienes una cuenta? <Link className="text-sky-500" to="/register">Sing up</Link>

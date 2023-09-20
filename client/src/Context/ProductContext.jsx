@@ -4,7 +4,8 @@ import {
     getProductosRequest,  
     deleteProductoRequest,
     getProductoRequest,
-    updateProductoRequest
+    updateProductoRequest,
+    getProductoByTipoRequest
 } from "../api/productos";
 
 const ProductContext = createContext();
@@ -62,6 +63,15 @@ export function ProductProvider({ children }) {
             console.error(error)
         }
     }
+    
+    const getProductosByTipo = async(tipo) => {
+        try {
+            const res = await getProductoByTipoRequest(tipo)
+            setProducto(res.data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
         <ProductContext.Provider 
@@ -72,6 +82,7 @@ export function ProductProvider({ children }) {
             deleteProducto,
             getProducto,
             updateProducto,
+            getProductosByTipo
         }}>
             {children}
         </ProductContext.Provider>

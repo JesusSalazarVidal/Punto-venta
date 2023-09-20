@@ -20,6 +20,20 @@ export const getVenta = async (req, res) =>{
 };
 
 export const createVenta = async (req, res) => {
+    console.log("hola")
+    const {productos, total} = req.body
+
+    // crear una nueva venta 
+    const newVenta = new Venta ({
+        productos: productos,
+        total: total
+    });
+    
+    const savedVenta = await newVenta.save()
+    res.status(204).json(savedVenta)
+}
+/*
+export const createVenta = async (req, res) => {
     const {productos, cantidad} = req.body;
     console.log(productos)
     
@@ -44,6 +58,7 @@ export const createVenta = async (req, res) => {
     const savedVenta = await newVenta.save()
     res.json(savedVenta)
 };
+*/
 
 export const updateVenta = async (req, res) =>{
     const {id} = req.params;//guardamos el id 

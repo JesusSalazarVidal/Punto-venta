@@ -40,6 +40,7 @@ function App() {
                       <Route path="/login" element={<LoginPage />} />
                       <Route path="/" element={<LoginPage/>} />
                       <Route path="/register" element={<RegisterPage />} />
+                      <Route path="/index" element={<HomePage/>}/>
                     
 
                       <Route element={<ProtectedRoute />}>
@@ -47,9 +48,9 @@ function App() {
 
                         <Route path="/ingresos" element={<IngresosPage />} />
 
-            <Route path="/egresos/new" element={<EgresoFormPage/>} />
-            <Route path="/actualizarEgreso/:id" element={<EgresoFormPage />}/>
-            <Route path="/egresos" element={<EgresosPage />} />
+                        <Route path="/egresos/new" element={<EgresoFormPage/>} />
+                        <Route path="/actualizarEgreso/:id" element={<EgresoFormPage />}/>
+                        <Route path="/egresos" element={<EgresosPage />} />
 
                         <Route path="/usuarios" element={<UsuariosPage />} />
                         <Route

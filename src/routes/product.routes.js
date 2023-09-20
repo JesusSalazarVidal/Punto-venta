@@ -7,6 +7,7 @@ import {
   createProducto,
   deleteProducto,
   updateProducto,
+  getProductosByTipo
 } from "../controllers/product.controller.js";
 
 const router = Router();
@@ -14,6 +15,7 @@ const router = Router();
 router.get("/obtenerProductos", authRequired, getProductos);
 router.get("/obtenerProducto/:id", authRequired, getProducto);
 router.get("/obtenerProductosByNombreProducto/:id",authRequired, getProductosByNombreProducto);
+router.get("/obtenerProductosByTipo/:tipo",authRequired, getProductosByTipo);
 router.post("/crearProducto", authRequired, createProducto);
 router.put("/actualizarProducto/:id", authRequired, updateProducto);
 router.delete("/eliminarProducto/:id", authRequired, deleteProducto);
