@@ -58,7 +58,7 @@ function App() {
 
                         <Route path="/egresos/new" element={<EgresoFormPage/>} />
                         <Route path="/actualizarEgreso/:id" element={<EgresoFormPage />}/>
-                        <Route path="/egresos" element={<EgresosPage />} />
+                        <Route path="/obtenerEgresos" element={<EgresosPage />} />
 
                         <Route path="/usuarios" element={<UsuariosPage />} />
                         <Route

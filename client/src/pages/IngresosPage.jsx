@@ -17,7 +17,7 @@ function IngresosPage() {
   return (
     <div>
       <SidebarMenu />
-      <div className="sm:ml-64 w-8">
+      <div className="sm:ml-64 w-8 mt-20">
         <Link to={"/crearIngreso"} className="text-pink-800 hover:text-black">
           <AiOutlinePlusSquare size={30} />
         </Link>

@@ -34,7 +34,7 @@ function SidebarMenu() {
             <li>
               <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group">
                 <TbCoin className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <Link to="/egresos" className="p-2 font-bold">
+                <Link to="/obtenerEgresos" className="p-2 font-bold">
                   Egresos
                 </Link>
               </a>
@@ -52,9 +52,7 @@ function SidebarMenu() {
       </aside>
 
       <div className=" sm:ml-64">
-        <div className="flex justify-center items-center h-screen">
-        <h1 className="text-4xl font-bold">BIENVENIDO</h1>
-        </div>
+        
       </div>
     </div>
   );

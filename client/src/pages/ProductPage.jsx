@@ -3,6 +3,7 @@ import { useProduct } from "../Context/ProductContext"
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import TablaProductos from "../components/TablaProductos";
+import SidebarMenu from "../components/SidebarMenu";
 
 
 function ProductPage() {
@@ -19,7 +20,8 @@ function ProductPage() {
 
   return (
     <div>
-      <div className="sm:ml-64 w-8">
+      <SidebarMenu />
+      <div className="sm:ml-64 w-8 mt-20">
       <Link
             to={"/crearProducto"}
             className="text-pink-800 hover:text-black"
@@ -27,7 +29,7 @@ function ProductPage() {
             <AiOutlinePlusSquare size={30} />
           </Link>
       </div>
-      <h1 className='text-3xl font-bold text-center pb-5 mb-3'>Productos</h1>
+      <h1 className='text-3xl font-bold text-center '>Productos</h1>
       <TablaProductos data={producto}></TablaProductos>
     
       

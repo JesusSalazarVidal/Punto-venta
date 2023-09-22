@@ -18,7 +18,7 @@ function TablaVentas() {
 
 
   // Verificar si usuario está inicializado antes de acceder a 'nombre'
-  const isAdmin = usuario && usuario.nombre === 'melina';
+  const isAdmin = usuario && usuario.nombre === 'Administrador';
 
   return (
     <div>
@@ -26,7 +26,7 @@ function TablaVentas() {
       <div>
         <SidebarMenu />
         <div className="sm:ml-64">
-        <h1 className="text-lg text-center font-black p-4">Detalles de Ventas</h1>
+        <h1 className="text-lg text-center font-black p-4 mt-16">Detalles de Ventas</h1>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-2">
           {venta.map((vent, index) => (
             <DetalleVenta vent={vent} key={index} />

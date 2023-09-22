@@ -26,7 +26,7 @@ function EgresoFormPage() {
       }else{
         createEgreso(data)
       }
-      navigate('/egresos')
+      navigate('/obtenerEgresos')
       
     })
   return (

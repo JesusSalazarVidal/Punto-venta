@@ -26,7 +26,7 @@ const { usuario} = useAuth()
     // Puedes redirigir aquí basándote en el valor de "user".
     // Por ejemplo, utilizando React Router:
     if (isAuthenticated){
-    if (usuario.nombre === 'melina') {
+    if (usuario.nombre === 'Administrador') {
       navigate('/sidebarMenu');
     } else {
       navigate('/index');
