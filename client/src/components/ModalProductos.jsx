@@ -2,6 +2,7 @@ import React from "react";
 import { useProduct } from "../Context/ProductContext";
 import ProductCard from "./ProductCard";
 import { useEffect } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 
 function ModalProductos({ isOpen, onClose, tipo }) {
   if (!isOpen) return null;
@@ -17,14 +18,14 @@ function ModalProductos({ isOpen, onClose, tipo }) {
       <div className="modal-overlay" onClick={onClose}></div>
       <div className="modal-container bg-white w-2/4 p-4 rounded shadow-lg z-50">
         {/* Contenido del modal */}
-        <div className="grid grid-cols-3 gap-4">
-          {producto && producto.map((product) => (
-            <ProductCard product={product} key={product._id} />
-          ))}
+        <FaArrowLeft size={32} onClick={onClose}></FaArrowLeft>
+
+        <div className="grid grid-cols-3 gap-4 mt-2">
+          {producto &&
+            producto.map((product) => (
+              <ProductCard product={product} key={product._id} />
+            ))}
         </div>
-        <button className="btn btn-primary mt-4" onClick={onClose}>
-          Cerrar
-        </button>
       </div>
     </div>
   );

@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { useProduct } from "../Context/ProductContext"
-import ProductCard from "../components/ProductCard";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import Paginator from "../components/Paginator"
-import { FiDivideSquare } from "react-icons/fi";
+import TablaProductos from "../components/TablaProductos";
 
 
 function ProductPage() {
@@ -32,14 +30,15 @@ function ProductPage() {
     useEffect(() => {
       getProductos()
   }, [])
+  console.log(producto)
   
   
 
    if (producto.length === 0) return (<h1>No Hay Productos</h1>)
 
   return (
-    <div className="sm:ml-64">
-      <div className="w-8">
+    <div>
+      <div className="sm:ml-64 w-8">
       <Link
             to={"/crearProducto"}
             className="text-pink-800 hover:text-black"
@@ -48,17 +47,9 @@ function ProductPage() {
           </Link>
       </div>
       <h1 className='text-3xl font-bold text-center pb-5 mb-3'>Productos</h1>
-    <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-2 ">
-      {/* Renderiza tus elementos paginados aquí */}
-      {paginatedData.map((product) => (
-        <ProductCard product={product} key={product._id} />
-      ))}
-      </div>
-      <Paginator
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      <TablaProductos data={producto}></TablaProductos>
+    
+      
     </div>
   )
 }

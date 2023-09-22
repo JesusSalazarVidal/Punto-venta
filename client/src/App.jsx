@@ -4,6 +4,7 @@ import { ProductProvider } from "./Context/ProductContext";
 import { VentaProvider } from "./Context/VentasContext";
 import { EgresoProvider } from "./Context/EgresosContext";
 import { UsuarioProvider } from "./Context/UsuariosContext";
+import { IngresoProvider } from "./Context/IngresosContext";
 
 import Navbar from "./components/Navbar";
 import SidebarMenu from "./components/SidebarMenu";
@@ -23,8 +24,8 @@ import ProductPage from "./pages/ProductPage";
 import ProtectedRoute from "./ProtectedRoute";
 import EgresoFormPage from "./pages/EgresoFormPage";
 import UsuariosPage from "./pages/UsuariosPage";
-import { IngresoProvider } from "./Context/IngresosContext";
 import UsuarioEditar from "./pages/UsuarioEditar";
+import VentasPage from "./pages/VentasPage";
 
 function App() {
   return (
@@ -72,13 +73,18 @@ function App() {
                           path="/obtenerProductos"
                           element={<ProductPage />}
                         />
+                        
+                        <Route
+                          path="/actualizarProducto/:id"
+                          element={<ProductPageForm/>}
+                        />
 
                         <Route path="/crearVenta" element={<VentaFormPage />} />
                         <Route
                           path="/obtenerVenta/:id"
                           element={<VentaFormPage />}
                         />
-                        <Route path="/obtenerVentas" element={<VentaPage />} />
+                        <Route path="/obtenerVentas" element={<VentasPage />} />
                         <Route
                           path="/crearIngreso"
                           element={<IngresosFormPage />}

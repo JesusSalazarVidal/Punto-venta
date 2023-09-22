@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import {
   createVentaRequest,
   deleteVentaRequest,
@@ -24,6 +24,7 @@ export function VentaProvider({ children }) {
     productos: [],
     total: 0,
   });
+  const [mensaje, setMensaje] = useState(null); // Estado para el mensaje
 
   const getVentas = async () => {
     try {
@@ -39,6 +40,7 @@ export function VentaProvider({ children }) {
       const res = await createVentaRequest(venta);
       if (res.status === 204) {
         setCuenta({productos:[], total: 0});
+        setMensaje("La compra se guardo con exito")
       }
       console.log(res);
     } catch (error) {
@@ -110,6 +112,18 @@ export function VentaProvider({ children }) {
     }
   };
 
+  useEffect(() => {
+    if (mensaje) {
+      // Si hay un mensaje, configura un temporizador para ocultarlo después de 5 segundos
+      const timerId = setTimeout(() => {
+        setMensaje(null); // Oculta el mensaje
+      }, 3000); // 5000 milisegundos = 5 segundos
+
+      // Limpia el temporizador si el componente se desmonta o el mensaje cambia
+      return () => clearTimeout(timerId);
+    }
+  }, [mensaje]);
+
   return (
     <VentaContext.Provider
       value={{
@@ -122,6 +136,7 @@ export function VentaProvider({ children }) {
         cuenta,
         setCuenta,
         deleteCuenta,
+        mensaje,
       }}
     >
       {children}
