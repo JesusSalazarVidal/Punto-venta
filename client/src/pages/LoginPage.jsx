@@ -16,10 +16,22 @@ function LoginPage() {
   const onSubmit = handleSubmit((data) => {
     signin(data);
   });
+const { usuario} = useAuth()
+
+  //useEffect(() => {
+   // if (isAuthenticated) navigate('/index') 
+ // }, [isAuthenticated])
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/obtenerProductos') 
-  }, [isAuthenticated])
+    // Puedes redirigir aquí basándote en el valor de "user".
+    // Por ejemplo, utilizando React Router:
+    if (isAuthenticated){
+    if (usuario.nombre === 'melina') {
+      navigate('/sidebarMenu');
+    } else {
+      navigate('/index');
+    }
+  }}, [isAuthenticated]);
 
   return (
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">

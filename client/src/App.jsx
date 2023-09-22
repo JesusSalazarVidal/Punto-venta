@@ -26,6 +26,10 @@ import UsuariosPage from "./pages/UsuariosPage";
 import { IngresoProvider } from "./Context/IngresosContext";
 import UsuarioEditar from "./pages/UsuarioEditar";
 
+import TablaVentas from "./components/TablaVentas";
+
+
+
 function App() {
   return (
     <AuthProvider>
@@ -36,9 +40,10 @@ function App() {
               <IngresoProvider>
                 <BrowserRouter>
                   <main className="container mx-auto px-5">
-                   
-                    <SidebarMenu />
+                    <Navbar />
                     <Routes>
+                      <Route path="/tablaVentas" element={<TablaVentas />} />
+                      <Route path="/sidebarMenu" element={<SidebarMenu />} />
                       <Route path="/login" element={<LoginPage />} />
                       <Route path="/" element={<LoginPage />} />
                       <Route path="/register" element={<RegisterPage />} />

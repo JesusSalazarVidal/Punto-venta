@@ -5,6 +5,7 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Paginator from "../components/Paginator"
 import { FiDivideSquare } from "react-icons/fi";
+import SidebarMenu from "../components/SidebarMenu";
 
 
 function ProductPage() {
@@ -38,7 +39,9 @@ function ProductPage() {
    if (producto.length === 0) return (<h1>No Hay Productos</h1>)
 
   return (
-    <div className="sm:ml-64">
+    <div>
+      <SidebarMenu />
+      <div className="sm:ml-64">
       <div className="w-8">
       <Link
             to={"/crearProducto"}
@@ -59,6 +62,7 @@ function ProductPage() {
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
+    </div>
     </div>
   )
 }

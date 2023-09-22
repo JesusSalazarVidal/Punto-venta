@@ -3,7 +3,7 @@ import { useAuth } from "../Context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { useUsuarios } from "../Context/UsuariosContext";
-import Egreso from "../../../src/models/egreso.model";
+
 
 function RegisterPage() {
   const {
@@ -45,8 +45,9 @@ function RegisterPage() {
   });
 
   return (
-      <div className="flex h-[calc(100vh-100px)] items-center justify-center">
-    <div className="bg-zinc-800 max-w-md p-10 rounded-md">
+      <div className="flex h-[calc(100vh-100px)] items-center justify-center mt-16">
+    <div className="bg-zinc-700 max-w-md p-10 rounded-md">
+    <h1 className="text-2xl font-bold">Registro</h1>
       {RegisterErrors.map((error, i) => (
         <div className="bg-red-500 text-white" key={i}>{error}
           {error}
@@ -90,7 +91,7 @@ function RegisterPage() {
           <p className="text-red-500">La huella es requerida</p>
         )}
 
-        <button type="submit">Registrar</button>
+        <button className="bg-green-400 rounded font-bold justify-center" type="submit">Registrar</button>
       </form>
       <p className="flex gap-x-2 justify-between">
         Ya tienes una cuenta?{" "}

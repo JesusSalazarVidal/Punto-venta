@@ -11,8 +11,12 @@ function Us() {
             <li className="mb-2 font-black text-center text-2xl"> {usuario.nombre}</li>
             <li className="mb-2"> Usuario: {usuario.nombreUsuario}</li>
             <li>
-            <Link to={"/egresos/new"}>new egreso</Link>
+            <Link className="mb-2" to={"/tablaVentas"}>Ventas</Link>
             </li>
+            <li>
+            <Link className="mb-2" to={"/index"}>Index</Link>
+            </li>
+            
             <li className="mb-2">
               <Link
                 to="/"

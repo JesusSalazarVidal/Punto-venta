@@ -12,9 +12,9 @@ function HomePage() {
     { id: 4, tipo: "malteadas" },
   ];
   return (
-    <div className="flex">
+    <div className="flex mt-16">
       {/* División izquierda (4/6 de la pantalla) */}
-      <div className="w-4/6 p-4">
+      <div className="w-4/6 p-3">
         <div className="grid grid-cols-3 gap-4">
           {tipos.map((tipo) => (
             <TiposProducto key={tipo.id} tipo={tipo.tipo} />
