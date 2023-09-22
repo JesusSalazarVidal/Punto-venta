@@ -3,6 +3,7 @@ import { useEgresos } from "../Context/EgresosContext";
 import Tabla from '../components/Tabla'
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import SidebarMenu from "../components/SidebarMenu";
 
 function EgresosPage() {
   const { getEgresos, egresos} = useEgresos();
@@ -16,6 +17,7 @@ function EgresosPage() {
 
   return (
     <div>
+      <SidebarMenu/>
       <div className="sm:ml-64 w-8">
         <Link to={"/egresos/new"} className="text-pink-800 hover:text-black">
           <AiOutlinePlusSquare size={30} />

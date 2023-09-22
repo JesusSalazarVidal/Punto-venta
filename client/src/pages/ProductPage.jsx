@@ -8,25 +8,6 @@ import TablaProductos from "../components/TablaProductos";
 function ProductPage() {
     const { getProductos, producto } = useProduct();
 
-    // Estados para el paginador
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // Cambia este valor según tus necesidades numero de elementos por pagina
-
-  // Calcula el total de páginas
-  const totalPages = Math.ceil(producto.length / itemsPerPage);
-
-  
-  // Función para cambiar la página
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  // Filtra los datos según la página actual
-  const paginatedData = producto.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
     useEffect(() => {
       getProductos()
   }, [])

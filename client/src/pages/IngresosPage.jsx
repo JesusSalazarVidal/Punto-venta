@@ -3,6 +3,7 @@ import { useIngresos } from "../Context/IngresosContext";
 import Tabla from "../components/Tabla";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import SidebarMenu from "../components/SidebarMenu";
 
 function IngresosPage() {
   const { getIngresos, ingresos } = useIngresos();
@@ -14,7 +15,8 @@ function IngresosPage() {
   if (ingresos.length === 0) return <h1>No hay Ingresos disponibles</h1>;
 
   return (
-    <div className="">
+    <div>
+      <SidebarMenu />
       <div className="sm:ml-64 w-8">
         <Link to={"/crearIngreso"} className="text-pink-800 hover:text-black">
           <AiOutlinePlusSquare size={30} />
