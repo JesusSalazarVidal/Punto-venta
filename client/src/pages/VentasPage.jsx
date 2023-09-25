@@ -3,6 +3,7 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useVentas } from "../Context/VentasContext";
 import TablaVentas from "../components/TablaVentas2";
+import SidebarMenu from "../components/SidebarMenu";
 
 function VentasPage() {
     const {venta, getVentas}= useVentas()
@@ -15,7 +16,8 @@ function VentasPage() {
     if(venta.length === 0) return(<h1>No hay ventas registradas</h1>)
   return (
     <div>
-      <div className="sm:ml-64 w-8">
+      <SidebarMenu/>
+      <div className="sm:ml-64 w-8 mt-20">
         <Link to={"/egresos/new"} className="text-pink-800 hover:text-black">
           <AiOutlinePlusSquare size={30} />
         </Link> 
