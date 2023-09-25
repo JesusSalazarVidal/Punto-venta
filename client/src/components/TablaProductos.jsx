@@ -30,51 +30,53 @@ function TablaProductos({data}) {
   );
 
   return (
-    <div className="p-10 sm:ml-64 overflow-x-auto">
-      <table className=" w-full  shadow-md rounded-lgtext-center bg-white text-center">
-        <thead className="bg-pink-500 text-white">
-          <tr>
-            <th className="py-2 px-4">Nombre</th>
-            <th className="py-2 px-4">Tipo</th>
-            <th className="py-2 px-4">Precio</th>
-            <th className="py-2 px-4">Fecha</th>
-            <th className="py-2 px-4">Acciones</th>
-          </tr>
-        </thead>
-        <tbody className="text-gray-700">
-          {paginatedData.map((registro) => (
-            <tr className="py-2 px-4" key={registro._id}>
-              <td className="py-2 px-4">
-                {registro.nombre}
-              </td>
-              <td className="py-2 px-4">
-                {registro.tipo}
-              </td>
-              <td className="py-2 px-4">
-                {registro.precio}
-              </td>
-              
-              <td className="py-2 px-4">
-                {new Date(registro.fecha).toLocaleDateString()}
-              </td>
-              <td className="py-2 px-4">
-                <div className="flex mx-3">
-                    <Link to={`/actualizarProducto/${registro._id}`} ><BiEdit size={20} style={{color: "green"}}/></Link>
-                    <Link>
-                    <RiDeleteBinLine onClick={()=>{deleteProducto(registro._id)}} size={20} style={{color:"red"}}/></Link>
-                    
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <Paginator
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </div>
+    <div className="p-4 md:p-10 sm:ml-0 md:ml-64 overflow-x-auto"> {/* Ajusta el margen en pantallas medianas */}
+  <table className="w-full shadow-md rounded-lg text-center bg-white text-center">
+    <thead className="bg-pink-500 text-white">
+      <tr>
+        <th className="py-2 px-2 md:px-4 lg:px-6">Nombre</th> {/* Ajusta el padding en diferentes tamaños de pantalla */}
+        <th className="py-2 px-2 md:px-4 lg:px-6">Tipo</th>
+        <th className="py-2 px-2 md:px-4 lg:px-6">Precio</th>
+        <th className="py-2 px-2 md:px-4 lg:px-6">Fecha</th>
+        <th className="py-2 px-2 md:px-4 lg:px-6">Acciones</th>
+      </tr>
+    </thead>
+    <tbody className="text-gray-700">
+      {paginatedData.map((registro) => (
+        <tr className="py-2 px-2 md:px-4 lg:px-6" key={registro._id}>
+          <td className="py-2 px-2 md:px-4 lg:px-6">{registro.nombre}</td> {/* Ajusta el padding en diferentes tamaños de pantalla */}
+          <td className="py-2 px-2 md:px-4 lg:px-6">{registro.tipo}</td>
+          <td className="py-2 px-2 md:px-4 lg:px-6">{registro.precio}</td>
+          <td className="py-2 px-2 md:px-4 lg:px-6">
+            {new Date(registro.fecha).toLocaleDateString()}
+          </td>
+          <td className="py-2 px-2 md:px-4 lg:px-6">
+            <div className="flex mx-1 md:mx-3"> {/* Ajusta el margen en diferentes tamaños de pantalla */}
+              <Link to={`/actualizarProducto/${registro._id}`}>
+                <BiEdit size={20} style={{ color: "green" }} />
+              </Link>
+              <Link>
+                <RiDeleteBinLine
+                  onClick={() => {
+                    deleteProducto(registro._id);
+                  }}
+                  size={20}
+                  style={{ color: "red" }}
+                />
+              </Link>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <Paginator
+    currentPage={currentPage}
+    totalPages={totalPages}
+    onPageChange={handlePageChange}
+  />
+</div>
+
   );
 }
 

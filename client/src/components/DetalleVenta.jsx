@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 
 function DetalleVenta({ vent }) {
 
@@ -15,12 +15,16 @@ function DetalleVenta({ vent }) {
   <hr className="my-4" />
 
   <h3 className="text-lg font-bold">Productos:</h3>
+  
   <ul className="list-disc pl-6 mt-2">
+    
+  
     {vent.productos.map((producto) => (
       <li key={producto.id} className="text-gray-800">
         {producto.cantidad} {producto.nombre} ${producto.precio} <br />
       </li>
     ))}
+   
   </ul>
 
   <hr className="my-4" />

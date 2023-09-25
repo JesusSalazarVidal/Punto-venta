@@ -5,6 +5,7 @@ import Paginator from "./Paginator";
 import { useState } from "react";
 
 function TablaVentas({ data }) {
+
   //Verificamos si el arreglo de datos esta vacio o es nulo
   if (!data.length === 0) return <h1>No hay datos siponibles</h1>;
 
@@ -25,7 +26,7 @@ function TablaVentas({ data }) {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-
+ 
   return (
     <div className="p-10 sm:ml-64 overflow-x-auto">
       <table className=" w-full  shadow-md rounded-lgtext-center bg-white text-center">
@@ -46,7 +47,13 @@ function TablaVentas({ data }) {
                 {`${registro.total} MXN`}
               </th>
               <td>
-                <button className="bg-pink-300 rounded">Ver mas</button>
+              <button
+                className="text-blue-500 hover:underline"
+                
+              >
+                Ver Detalles
+              </button>
+                
               </td>
             </tr>
           ))}

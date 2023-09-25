@@ -20,6 +20,7 @@ function TablaVentas() {
   // Verificar si usuario está inicializado antes de acceder a 'nombre'
   const isAdmin = usuario && usuario.nombre === 'Administrador';
 
+
   return (
     <div>
     {isAdmin ? (
