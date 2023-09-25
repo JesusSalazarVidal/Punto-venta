@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
-import { useEgresos } from "../Context/EgresosContext";
-import { useIngresos } from "../Context/IngresosContext";
 import Paginator from "./Paginator";
 import { useState } from "react";
+import ModalVenta from "./ModalVenta";
+import {FcViewDetails} from 'react-icons/fc'
 
 function TablaVentas({ data }) {
   //Verificamos si el arreglo de datos esta vacio o es nulo
@@ -26,6 +25,19 @@ function TablaVentas({ data }) {
     currentPage * itemsPerPage
   );
 
+  const [selectedRegistro, setSelectedRegistro] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = (registro) => {
+    setSelectedRegistro(registro);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedRegistro(null);
+    setModalOpen(false);
+  };
+
   return (
     <div className="p-10 sm:ml-64 overflow-x-auto">
       <table className=" w-full  shadow-md rounded-lgtext-center bg-white text-center">
@@ -46,17 +58,21 @@ function TablaVentas({ data }) {
                 {`${registro.total} MXN`}
               </th>
               <td>
-                <button className="bg-pink-300 rounded">Ver mas</button>
+                <FcViewDetails onClick={() => openModal(registro)} size={20} />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      
       <Paginator
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
+      {selectedRegistro && (
+        <ModalVenta isOpen={isModalOpen} onClose={closeModal} registro={selectedRegistro} />
+      )}
     </div>
   );
 }

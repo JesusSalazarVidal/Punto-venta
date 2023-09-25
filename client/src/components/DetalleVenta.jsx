@@ -1,6 +1,7 @@
 
 
 function DetalleVenta({ vent }) {
+  console.log(vent)
 
     function formatFecha(fechaString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
