@@ -28,8 +28,7 @@ import UsuarioEditar from "./pages/UsuarioEditar";
 import VentasPage from "./pages/VentasPage";
 
 import TablaVentas from "./components/TablaVentas";
-
-
+import ProtectedAdmin from "./ProtectedAdmin";
 
 function App() {
   return (
@@ -48,41 +47,58 @@ function App() {
                       <Route path="/login" element={<LoginPage />} />
                       <Route path="/" element={<LoginPage />} />
                       <Route path="/register" element={<RegisterPage />} />
-                      <Route path="/index" element={<HomePage/>}/>
-                    
+                      <Route path="/index" element={<HomePage />} />
 
                       <Route element={<ProtectedRoute />}>
                         <Route path="/profile" element={<ProfilePage />} />
-
-                        <Route path="/ingresos" element={<IngresosPage />} />
-
-                        <Route path="/egresos/new" element={<EgresoFormPage/>} />
-                        <Route path="/actualizarEgreso/:id" element={<EgresoFormPage />}/>
-                        <Route path="/obtenerEgresos" element={<EgresosPage />} />
-
-                        <Route path="/usuarios" element={<UsuariosPage />} />
-                        <Route
-                          path="/actualizarUsuario/:id"
-                          element={<UsuarioEditar />}
-                        />
-
-                        <Route
-                          path="/crearProducto"
-                          element={<ProductPageForm />}
-                        />
-                        <Route
-                          path="/obtenerProducto/:id"
-                          element={<ProductPageForm />}
-                        />
-                        <Route
-                          path="/obtenerProductos"
-                          element={<ProductPage />}
-                        />
-                        
-                        <Route
-                          path="/actualizarProducto/:id"
-                          element={<ProductPageForm/>}
-                        />
+                        <Route element={<ProtectedAdmin />}>
+                          <Route path="/ingresos" element={<IngresosPage />} />
+                          <Route
+                            path="/egresos/new"
+                            element={<EgresoFormPage />}
+                          />
+                          <Route
+                            path="/actualizarEgreso/:id"
+                            element={<EgresoFormPage />}
+                          />
+                          <Route
+                            path="/obtenerEgresos"
+                            element={<EgresosPage />}
+                          />
+                          <Route path="/usuarios" element={<UsuariosPage />} />
+                          <Route
+                            path="/actualizarUsuario/:id"
+                            element={<UsuarioEditar />}
+                          />
+                          <Route
+                            path="/crearProducto"
+                            element={<ProductPageForm />}
+                          />
+                          <Route
+                            path="/obtenerProducto/:id"
+                            element={<ProductPageForm />}
+                          />
+                          <Route
+                            path="/obtenerProductos"
+                            element={<ProductPage />}
+                          />
+                          <Route
+                            path="/actualizarProducto/:id"
+                            element={<ProductPageForm />}
+                          />
+                          <Route
+                            path="/crearIngreso"
+                            element={<IngresosFormPage />}
+                          />
+                          <Route
+                            path="/obtenerIngresos"
+                            element={<IngresosPage />}
+                          />
+                          <Route
+                            path="/actualizarIngreso/:id"
+                            element={<IngresosFormPage />}
+                          />
+                        </Route>
 
                         <Route path="/crearVenta" element={<VentaFormPage />} />
                         <Route
@@ -90,18 +106,6 @@ function App() {
                           element={<VentaFormPage />}
                         />
                         <Route path="/obtenerVentas" element={<VentasPage />} />
-                        <Route
-                          path="/crearIngreso"
-                          element={<IngresosFormPage />}
-                        />
-                        <Route
-                          path="/obtenerIngresos"
-                          element={<IngresosPage />}
-                        />
-                        <Route
-                          path="/actualizarIngreso/:id"
-                          element={<IngresosFormPage />}
-                        />
                       </Route>
                     </Routes>
                   </main>

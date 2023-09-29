@@ -1,5 +1,3 @@
-
-
 function DetalleVenta({ vent }) {
   console.log(vent)
 
