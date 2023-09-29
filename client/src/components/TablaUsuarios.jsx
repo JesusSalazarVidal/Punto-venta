@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { useUsuarios } from "../Context/UsuariosContext";
 import { useState } from "react";
 import Paginator from "./Paginator";
+import { BiEdit } from "react-icons/bi";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 function TablaUsuarios({ data }) {
   //Verificamos si el arreglo de datos esta vacio o es nulo
   if (!data.length === 0) return <h1>No hay datos siponibles</h1>;
-  const {deleteUsuario} = useUsuarios()
+  const { deleteUsuario } = useUsuarios();
 
   // Estados para el paginador
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,27 +45,29 @@ function TablaUsuarios({ data }) {
         </thead>
         <tbody className="text-gray-700">
           {paginatedData.map((usuario) => (
-            <tr
-            className="py-2 px-4"
-              key={usuario._id}
-            >
-              <th className="py-2 px-4 ">
-                {usuario.nombre}
-              </th>
+            <tr className="py-2 px-4" key={usuario._id}>
+              <th className="py-2 px-4 ">{usuario.nombre}</th>
               <td className="py-2 px-4 "> {usuario.nombreUsuario} </td>
-              <td className="py-2 px-4  text-center">
-                <Link
-                  to={`/actualizarUsuario/${usuario._id}`}
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Editar
-                </Link>
-                <button
-                  onClick={()=>{deleteUsuario(usuario._id)}}
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline px-3"
-                >
-                  Eliminar
-                </button>
+              <td className="py-2 px-2 md:px-4 lg:px-6">
+                <div className="flex mx-1 md:mx-3">
+                  {" "}
+                  {/* Ajusta el margen en diferentes tamaños de pantalla */}
+                  <Link
+                    className="p-2"
+                    to={`/actualizarUsuario/${usuario._id}`}
+                  >
+                    <BiEdit size={20} className="text-purple-600" />
+                  </Link>
+                  <Link className="p-2">
+                    <RiDeleteBinLine
+                      onClick={() => {
+                        deleteUsuario(usuario._id);
+                      }}
+                      size={20}
+                      style={{ color: "red" }}
+                    />
+                  </Link>
+                </div>
               </td>
             </tr>
           ))}
