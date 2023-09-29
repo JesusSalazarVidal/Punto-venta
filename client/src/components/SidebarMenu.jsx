@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { TiChartLine } from "react-icons/ti";
 import { CgShoppingBag } from "react-icons/cg";
 import { TbBusinessplan, TbCoin } from "react-icons/tb";
+import {BsFillPersonFill} from "react-icons/bs"
+
+
 
 
 
@@ -62,6 +65,14 @@ function SidebarMenu() {
                 <TbBusinessplan className="flex-shrink-0 w-5 h-5 text-purple-600 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <Link to="/ingresos" className="p-2 font-bold">
                   Ingresos
+                </Link>
+              </a>
+            </li>
+            <li>
+              <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group">
+                <BsFillPersonFill className="flex-shrink-0 w-5 h-5 text-purple-600 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <Link to="/usuarios" className="p-2 font-bold">
+                  Usuarios
                 </Link>
               </a>
             </li>

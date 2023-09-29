@@ -2,6 +2,7 @@ import {useForm} from "react-hook-form";
 import { useProduct } from "../Context/ProductContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import SidebarMenu from "../components/SidebarMenu";
 
 function ProductPageForm() {
     const {register, handleSubmit, setValue} = useForm();
@@ -33,8 +34,10 @@ function ProductPageForm() {
     }) 
 
   return (
-    <div className="flex h-[calc(100vh-100px)] sm:ml-64 justify-center items-center mt-20 bg-pink-400">
-      
+    <div>
+      <SidebarMenu />
+      <div className="flex h-[calc(100vh-100px)] sm:ml-64 justify-center items-center mt-20 bg-pink-400">
+
       <div className="w-full max-w-xs">
         <form onSubmit={onSubmit} className="bg-pink-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
           <div className="mb-4">
@@ -64,6 +67,8 @@ function ProductPageForm() {
         </form>
       </div>
     </div>
+    </div>
+    
   );
 }
 
