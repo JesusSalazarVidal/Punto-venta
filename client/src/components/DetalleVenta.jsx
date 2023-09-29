@@ -1,5 +1,5 @@
+
 function DetalleVenta({ vent }) {
-  console.log(vent)
 
     function formatFecha(fechaString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -14,17 +14,21 @@ function DetalleVenta({ vent }) {
   <hr className="my-4" />
 
   <h3 className="text-lg font-bold">Productos:</h3>
+  
   <ul className="list-disc pl-6 mt-2">
+    
+  
     {vent.productos.map((producto) => (
       <li key={producto.id} className="text-gray-800">
         {producto.cantidad} {producto.nombre} ${producto.precio} <br />
       </li>
     ))}
+   
   </ul>
 
   <hr className="my-4" />
 
-  <div className="text-center text-xl font-bold text-green-600">
+  <div className="text-center text-xl font-bold text-purple-600">
     Total: ${vent.total}
   </div>
 </div>

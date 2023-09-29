@@ -23,7 +23,7 @@ function EgresosPage() {
           <AiOutlinePlusSquare size={30} />
         </Link> 
       </div>
-      <h1 className="text-3xl font-bold text-center mb-3">Egresos</h1>
+      <h1 className="text-3xl font-bold text-center mb-3 pl-40">Egresos</h1>
       <Tabla data={egresos} tipo={'Egresos'}></Tabla>
     </div>
   );

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../Context/AuthContext";
 import {Link, useNavigate} from 'react-router-dom'
 import { useEffect } from "react";
+import Logo from "../img/logo.jpg"
 
 function LoginPage() {
   const {
@@ -35,8 +36,10 @@ const { usuario} = useAuth()
 
   return (
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">
-      <div className="bg-zinc-700 max-w-md w-full p-10 rounded-md">
-        
+      <div className="bg-pink-300 border-2 border-pink-800 max-w-md w-full p-10 rounded-md">
+      <div className="flex justify-center items-center">
+      <img className="w-1/2 h-auto " src={Logo} />
+      </div>
         <h1 className="text-2xl font-bold">Login</h1>
         {
         signinErrors.map((error, i) => (
@@ -47,7 +50,7 @@ const { usuario} = useAuth()
           <input
             type="text"
             {...register("nombreUsuario", { required: true })}
-            className="w-full bg-emerald-950 text-white px-4 py-2 rounded-md my-2"
+            className="w-full bg-white text-black px-4 py-2 rounded-md my-2"
             placeholder="Nombre de Usuario"
           />
           {errors.nombreUsuario && (
@@ -57,17 +60,17 @@ const { usuario} = useAuth()
           <input
             type="password"
             {...register("password", { required: true })}
-            className="w-full bg-emerald-950 text-white px-4 py-2 rounded-md my-2"
+            className="w-full bg-white text-black px-4 py-2 rounded-md my-2"
             placeholder="Contraseña"
           />
           {errors.password && (
             <p className="text-red-500">La contraseña es requerida</p>
           )}
 
-          <button type="submit" className="bg-green-400 rounded font-bold justify-center">Iniciar sesión</button>
+          <button type="submit" className="text-fuchsia-600 bg-white p-1 rounded font-bold justify-center">Iniciar sesión</button>
         </form>
-        <p className="flex gap-x-2 justify-between">
-          No tienes una cuenta? <Link className="text-sky-500" to="/register">Sing up</Link>
+        <p className="flex gap-x-2 justify-between text-fuchsia-600">
+          No tienes una cuenta? <Link className="text-fuchsia-600 font-bold" to="/register">Registrarse</Link>
         </p>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useAuth } from "../Context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { useUsuarios } from "../Context/UsuariosContext";
+import Logo from "../img/logo.jpg"
 
 
 function RegisterPage() {
@@ -46,10 +47,13 @@ function RegisterPage() {
 
   return (
       <div className="flex h-[calc(100vh-100px)] items-center justify-center mt-16">
-    <div className="bg-zinc-700 max-w-md p-10 rounded-md">
+    <div className="bg-pink-300 border-2 border-pink-800 max-w-md p-10 rounded-md">
+    <div className="flex justify-center items-center">
+      <img className="w-1/2 h-auto " src={Logo} />
+      </div>
     <h1 className="text-2xl font-bold">Registro</h1>
       {RegisterErrors.map((error, i) => (
-        <div className="bg-red-500 text-white" key={i}>{error}
+        <div className="bg-red-500 text-black" key={i}>{error}
           {error}
         </div>
       ))}
@@ -57,7 +61,7 @@ function RegisterPage() {
         <input
           type="text"
           {...register("nombreUsuario", { required: true })}
-          className="w-full bg-emerald-950 text-white px-4 py-2 rounded-md my-2"
+          className="w-full bg-white text-black px-4 py-2 rounded-md my-2"
           placeholder="Nombre de Usuario"
         />
         {errors.nombreUsuario && (
@@ -66,7 +70,7 @@ function RegisterPage() {
         <input
           type="text"
           {...register("nombre", { required: true })}
-          className="w-full bg-emerald-950 text-white px-4 py-2 rounded-md my-2"
+          className="w-full bg-white text-black px-4 py-2 rounded-md my-2"
           placeholder="Nombre"
         />
         {errors.nombre && (
@@ -75,7 +79,7 @@ function RegisterPage() {
         <input
           type="password"
           {...register("password", { required: true })}
-          className="w-full bg-emerald-950 text-white px-4 py-2 rounded-md my-2"
+          className="w-full bg-white text-black px-4 py-2 rounded-md my-2"
           placeholder="Contraseña"
         />
         {errors.password && (
@@ -84,19 +88,19 @@ function RegisterPage() {
         <input
           type="text"
           {...register("huella", { required: true })}
-          className="w-full bg-emerald-950 text-white px-4 py-2 rounded-md my-2"
+          className="w-full bg-white text-black px-4 py-2 rounded-md my-2"
           placeholder="Huella"
         />
         {errors.huella && (
           <p className="text-red-500">La huella es requerida</p>
         )}
 
-        <button className="bg-green-400 rounded font-bold justify-center" type="submit">Registrar</button>
+        <button className="text-fuchsia-600 bg-white p-1 rounded font-bold justify-center" type="submit">Registrar</button>
       </form>
-      <p className="flex gap-x-2 justify-between">
+      <p className="flex gap-x-2 justify-between text-fuchsia-600">
         Ya tienes una cuenta?{" "}
-        <Link className="text-sky-500" to="/login">
-          Login
+        <Link className="text-fuchsia-600 font-bold" to="/login">
+          Iniciar Sesión
         </Link>
       </p>
     </div>

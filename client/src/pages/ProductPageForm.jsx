@@ -33,7 +33,8 @@ function ProductPageForm() {
     }) 
 
   return (
-    <div className="flex h-[calc(100vh-100px)] sm:ml-64 justify-center items-center bg-pink-400">
+    <div className="flex h-[calc(100vh-100px)] sm:ml-64 justify-center items-center mt-20 bg-pink-400">
+      
       <div className="w-full max-w-xs">
         <form onSubmit={onSubmit} className="bg-pink-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
           <div className="mb-4">

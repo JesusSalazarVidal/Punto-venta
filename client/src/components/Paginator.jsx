@@ -16,7 +16,7 @@ function Paginator({ currentPage, totalPages, onPageChange }) {
                 <button
                   className={`px-3 py-2 ${
                     currentPage === page
-                      ? 'bg-black text-white'
+                      ? 'bg-purple-600 text-white'
                       : 'bg-pink-200 text-black hover:bg-pink-500'
                   }`}
                   onClick={() => onPageChange(page)}

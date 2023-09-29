@@ -3,6 +3,8 @@ import { useEgresos } from "../Context/EgresosContext";
 import { useIngresos } from "../Context/IngresosContext";
 import Paginator from "./Paginator";
 import { useState } from "react";
+import { BiEdit } from "react-icons/bi";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 function Tabla({ data, tipo }) {
   //Verificamos si el arreglo de datos esta vacio o es nulo
@@ -14,7 +16,7 @@ function Tabla({ data, tipo }) {
 
   // Estados para el paginador
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Cambia este valor según tus necesidades numero de elementos por pagina
+  const itemsPerPage = 3; // Cambia este valor según tus necesidades numero de elementos por pagina
 
   // Calcula el total de páginas
   const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -63,30 +65,31 @@ function Tabla({ data, tipo }) {
               <td className="py-2 px-4">
                 {new Date(registro.fecha).toLocaleDateString()}
               </td>
-              <td className="py-2 px-4">
+              <td className="py-2 px-4 md:px-4 lg:px-6">
+              <div className="flex mx-1 md:mx-3">
                 <Link
                   to={
                     tipo === "Egresos"
                       ? `/actualizarEgreso/${registro._id}`
                       : `/actualizarIngreso/${registro._id}`
                   }
-                  className="py-2 px-4"
+                  className="py-2 px-4 "
                 >
-                  Editar
+                  <BiEdit size={20} className="text-purple-600" />
                 </Link>
-
-                <button
+                <Link className="p-2 "> 
+                <RiDeleteBinLine
                   onClick={() => {
                     if (tipo == "Egresos") {
                       deleteEgreso(registro._id);
                     } else {
                       deleteIngreso(registro._id);
-                    }
-                  }}
-                  className="py-2 px-4"
-                >
-                  Eliminar
-                </button>
+                    }}}
+                  size={20}
+                  style={{ color: "red" }}
+                />
+              </Link>
+              </div>
               </td>
             </tr>
           ))}
@@ -102,3 +105,19 @@ function Tabla({ data, tipo }) {
 }
 
 export default Tabla;
+
+/* 
+<button
+                  onClick={() => {
+                    if (tipo == "Egresos") {
+                      deleteEgreso(registro._id);
+                    } else {
+                      deleteIngreso(registro._id);
+                    }
+                  }}
+                  className=" py-2 px-4"
+                >
+                  <RiDeleteBinLine
+                   size={20} className="text-red-600" />
+                </button>
+                */

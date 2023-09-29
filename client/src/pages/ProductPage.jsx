@@ -20,20 +20,20 @@ function ProductPage() {
 
   return (
     <div>
-      <SidebarMenu />
-      <div className="sm:ml-64 w-8 mt-20">
-      <Link
-            to={"/crearProducto"}
-            className="text-pink-800 hover:text-black"
-          >
-            <AiOutlinePlusSquare size={30} />
-          </Link>
-      </div>
-      <h1 className='text-3xl font-bold text-center '>Productos</h1>
-      <TablaProductos data={producto}></TablaProductos>
-    
-      
-    </div>
+  <SidebarMenu />
+
+  <div className="sm:ml-0 md:ml-64 w-full md:w-8 mt-4 md:mt-20 text-center md:text-left">
+    <Link to="/crearProducto" className="text-pink-800 hover:text-black">
+      <AiOutlinePlusSquare size={30} />
+    </Link>
+  </div>
+
+  <h1 className="text-3xl font-bold text-center mt-4 pl-40 md:mt-0">
+    Productos
+  </h1>
+
+  <TablaProductos data={producto}></TablaProductos>
+</div>
   )
 }
 

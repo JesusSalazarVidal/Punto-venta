@@ -17,10 +17,7 @@ function VentasPage() {
   return (
     <div>
       <SidebarMenu/>
-      <div className="sm:ml-64 w-8 mt-20">
-        <Link to={"/egresos/new"} className="text-pink-800 hover:text-black">
-          <AiOutlinePlusSquare size={30} />
-        </Link> 
+      <div className="sm:ml-64 w-8 mt-20"> 
       </div>
       <h1 className="text-3xl font-bold text-center mb-3">Ventas</h1>
       <TablaVentas data={venta}></TablaVentas>

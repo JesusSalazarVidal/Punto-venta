@@ -11,13 +11,13 @@ function Us() {
             <li className="mb-2 font-black text-center text-2xl"> {usuario.nombre}</li>
             <li className="mb-2"> Usuario: {usuario.nombreUsuario}</li>
             <li>
-            <Link className="mb-2" to={"/tablaVentas"}>Ventas</Link>
+            <Link className="mb-2 p-3" to={"/tablaVentas"}>Tikets</Link>
             </li>
             <li>
-            <Link className="mb-2" to={"/index"}>Index</Link>
+            <Link className="mb-2 p-3" to={"/index"}>Generar Venta</Link>
             </li>
             
-            <li className="mb-2">
+            <li className="mb-2 mt-2 text-purple-600 font-bold">
               <Link
                 to="/"
                 onClick={() => {
