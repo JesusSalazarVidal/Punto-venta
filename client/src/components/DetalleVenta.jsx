@@ -28,7 +28,7 @@ function DetalleVenta({ vent }) {
 
   <hr className="my-4" />
 
-  <div className="text-center text-xl font-bold text-green-600">
+  <div className="text-center text-xl font-bold text-purple-600">
     Total: ${vent.total}
   </div>
 </div>

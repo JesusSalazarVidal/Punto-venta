@@ -31,7 +31,7 @@ function TablaProductos({data}) {
 
   return (
     <div className="p-4 md:p-10 sm:ml-0 md:ml-64 overflow-x-auto"> {/* Ajusta el margen en pantallas medianas */}
-  <table className="w-full shadow-md rounded-lg text-center bg-white text-center">
+  <table className="w-full shadow-md rounded-lg text-center bg-white r">
     <thead className="bg-pink-500 text-white">
       <tr>
         <th className="py-2 px-2 md:px-4 lg:px-6">Nombre</th> {/* Ajusta el padding en diferentes tamaños de pantalla */}
@@ -52,10 +52,10 @@ function TablaProductos({data}) {
           </td>
           <td className="py-2 px-2 md:px-4 lg:px-6">
             <div className="flex mx-1 md:mx-3"> {/* Ajusta el margen en diferentes tamaños de pantalla */}
-              <Link to={`/actualizarProducto/${registro._id}`}>
-                <BiEdit size={20} style={{ color: "green" }} />
+              <Link className="p-2" to={`/actualizarProducto/${registro._id}`}>
+                <BiEdit size={20} className="text-purple-600" />
               </Link>
-              <Link>
+              <Link className="p-2"> 
                 <RiDeleteBinLine
                   onClick={() => {
                     deleteProducto(registro._id);

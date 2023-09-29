@@ -2,6 +2,7 @@ import Paginator from "./Paginator";
 import { useState } from "react";
 import ModalVenta from "./ModalVenta";
 import {FcViewDetails} from 'react-icons/fc'
+import {AiOutlineFileDone} from "react-icons/ai"
 
 function TablaVentas({ data }) {
 
@@ -41,7 +42,7 @@ function TablaVentas({ data }) {
 
   return (
     <div className="p-10 sm:ml-64 overflow-x-auto">
-      <table className=" w-full  shadow-md rounded-lgtext-center bg-white text-center">
+      <table className=" w-4/5  shadow-md rounded-lgtext-center bg-white text-center">
         <thead className="bg-pink-500 text-white">
           <tr>
             <th className="py-2 px-4">Fecha</th>
@@ -49,18 +50,17 @@ function TablaVentas({ data }) {
             <th className="py-2 px-4">Acciones</th>
           </tr>
         </thead>
-        <tbody className="text-gray-700">
+        <tbody className="text-gray-700 text-center">
           {paginatedData.map((registro) => (
             <tr className="py-2 px-4" key={registro._id}>
               <td className="py-2 px-4">
                 {new Date(registro.fecha).toLocaleDateString()}
               </td>
-              <th scope="row" className="py-2 px-4">
+              <th scope="row" className="py-2 px-4" >
                 {`${registro.total} MXN`}
               </th>
-              <td>
-                
-                <FcViewDetails onClick={() => openModal(registro)} size={20} />
+              <td className="pl-28" >
+                <AiOutlineFileDone className="text-purple-600 " onClick={() => openModal(registro)} size={20} />
               </td>
             </tr>
           ))}

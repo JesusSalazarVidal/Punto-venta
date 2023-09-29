@@ -3,10 +3,15 @@ import { TiChartLine } from "react-icons/ti";
 import { CgShoppingBag } from "react-icons/cg";
 import { TbBusinessplan, TbCoin } from "react-icons/tb";
 
-function SidebarMenu() {
-  
 
+
+
+
+
+function SidebarMenu() {
+ 
   return (
+    
     <div>
        
       <aside
@@ -18,9 +23,19 @@ function SidebarMenu() {
         <div className="h-full px-3 pb-4 mt-1 overflow-y-auto bg-emerald-300 border-r-2 border-l-2 border-pink-800 dark:bg-gray-800">
 
           <ul className="space-y-2 font-medium">
+          
+
+          <li>
+          <a
+            to="/obtenerProductos"
+            className='flex items-center p-2 mt-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group bg-purple-600 ' 
+           
+          >
+          </a>
+        </li>
             <li>
               <a className="flex items-center p-2 mt-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group">
-                <CgShoppingBag className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <CgShoppingBag className="flex-shrink-0 w-5 h-5  transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-purple-600" />
                 <Link to="/obtenerProductos" className="p-2 font-bold">
                   Productos
                 </Link>
@@ -28,7 +43,7 @@ function SidebarMenu() {
             </li>
             <li>
               <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group">
-                <TiChartLine className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <TiChartLine className="flex-shrink-0 w-5 h-5 text-purple-600 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <Link to="/obtenerVentas" className="p-2 font-bold">
                   Ventas
                 </Link>
@@ -36,7 +51,7 @@ function SidebarMenu() {
             </li>
             <li>
               <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group">
-                <TbCoin className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <TbCoin className="flex-shrink-0 w-5 h-5 text-purple-600 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <Link to="/obtenerEgresos" className="p-2 font-bold">
                   Egresos
                 </Link>
@@ -44,7 +59,7 @@ function SidebarMenu() {
             </li>
             <li>
               <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group">
-                <TbBusinessplan className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <TbBusinessplan className="flex-shrink-0 w-5 h-5 text-purple-600 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <Link to="/ingresos" className="p-2 font-bold">
                   Ingresos
                 </Link>

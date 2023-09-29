@@ -28,7 +28,7 @@ function ProductPage() {
     </Link>
   </div>
 
-  <h1 className="text-3xl font-bold text-center mt-4 md:mt-0">
+  <h1 className="text-3xl font-bold text-center mt-4 pl-40 md:mt-0">
     Productos
   </h1>
 
