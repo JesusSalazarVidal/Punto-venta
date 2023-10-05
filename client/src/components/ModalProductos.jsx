@@ -14,13 +14,15 @@ function ModalProductos({ isOpen, onClose, tipo }) {
   }, [tipo]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex items-center z-50">
       <div className="modal-overlay" onClick={onClose}></div>
-      <div className="modal-container bg-white w-2/4 p-4 rounded shadow-lg z-50">
-        {/* Contenido del modal */}
-        <FaArrowLeft size={32} onClick={onClose}></FaArrowLeft>
+      <div className="modal-container bg-white w-3/5 h-auto mx-16 p-4 rounded shadow-lg relative z-50">
+        {/* Icono en la esquina superior derecha */}
+        <div className="absolute top-0 right-0 p-2">
+          <FaArrowLeft size={32} onClick={onClose} />
+        </div>
 
-        <div className="grid grid-cols-3 gap-4 mt-2">
+        <div className="grid grid-cols-4 gap-4 mt-7">
           {producto &&
             producto.map((product) => (
               <ProductCard product={product} key={product._id} />

@@ -86,13 +86,25 @@ function ProductPageForm() {
             onChange={handleChange} ></input>
           </div>
           <div className="mb-4">
-            <label className="block text-black text-sm font-bold mb-2">
-              Tipo
-            </label>
-            <input type="text" {...register("tipo")} className="shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            value={formData.tipo}
-            onChange={handleChange}></input>
-          </div>
+              <label className="block text-black text-sm font-bold mb-2">
+                Tipo
+              </label>
+              <select
+                {...register("tipo")}
+                className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" value={formData.tipo}
+                onChange={handleChange}
+              >
+                <option value="">-- Selecciona --</option>
+                <option value="Paletas">Paletas</option>
+                <option value="Nieves">Nieves</option>
+                <option value="Malteadas">Maltedas</option>
+                <option value="Nachos">Nachos</option>
+                <option value="Aguas">Aguas</option>
+
+                
+              </select>
+            </div>
+
           <div className="mb-4">
             <label className="block text-black text-sm font-bold mb-2">
               Precio
