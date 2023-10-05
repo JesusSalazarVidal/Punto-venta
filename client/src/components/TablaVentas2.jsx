@@ -8,24 +8,33 @@ function TablaVentas({ data }) {
 
   //Verificamos si el arreglo de datos esta vacio o es nulo
   if (!data.length === 0) return <h1>No hay datos siponibles</h1>;
+  // Agrupa las ventas por día
+  const salesByDay = data.reduce((acc, venta) => {
+    const fecha = new Date(venta.fecha).toLocaleDateString();
+    if (!acc[fecha]) {
+      acc[fecha] = [];
+    }
+    acc[fecha].push(venta);
+    return acc;
+  }, {});
+
+  const uniqueDates = Object.keys(salesByDay);
 
   // Estados para el paginador
+  const itemsPerPage = 1; // Una página por día
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Cambia este valor según tus necesidades numero de elementos por pagina
 
   // Calcula el total de páginas
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  //const totalPages = Math.ceil(data.length / itemsPerPage);
 
   // Función para cambiar la página
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  // Filtra los datos según la página actual
-  const paginatedData = data.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+   // Filtra los datos según la página actual (por día)
+  const currentDate = uniqueDates[currentPage - 1];
+  const paginatedData = salesByDay[currentDate];
  
   const [selectedRegistro, setSelectedRegistro] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -40,12 +49,19 @@ function TablaVentas({ data }) {
     setModalOpen(false);
   };
 
+  // fecha y hora 
+  function formatFecha(fechaString) {
+    const options ={ year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true  }
+    return new Date(fechaString).toLocaleString(undefined,options);
+  } 
+
+
   return (
-    <div className="p-10 sm:ml-64 overflow-x-auto">
+    <div className="p-10 overflow-x-auto">
       <table className=" w-4/5  shadow-md rounded-lgtext-center bg-white text-center">
         <thead className="bg-pink-500 text-white">
           <tr>
-            <th className="py-2 px-4">Fecha</th>
+            <th className="py-2 px-4">Fecha y Hora</th>
             <th className="py-2 px-4">Total</th>
             <th className="py-2 px-4">Acciones</th>
           </tr>
@@ -53,9 +69,9 @@ function TablaVentas({ data }) {
         <tbody className="text-gray-700 text-center">
           {paginatedData.map((registro) => (
             <tr className="py-2 px-4" key={registro._id}>
-              <td className="py-2 px-4">
-                {new Date(registro.fecha).toLocaleDateString()}
-              </td>
+             <td className="py-2 px-4">
+             {formatFecha(registro.fecha)}
+</td>
               <th scope="row" className="py-2 px-4" >
                 {`${registro.total} MXN`}
               </th>
@@ -69,9 +85,10 @@ function TablaVentas({ data }) {
       
       <Paginator
         currentPage={currentPage}
-        totalPages={totalPages}
+        totalPages={uniqueDates.length}
         onPageChange={handlePageChange}
       />
+
       {selectedRegistro && (
         <ModalVenta isOpen={isModalOpen} onClose={closeModal} registro={selectedRegistro} />
       )}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
-import Logo from "../img/logo.jpg";
+import Logo from "../img/logo.png";
 import { useState } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import Us from "./Us";

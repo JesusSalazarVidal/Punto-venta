@@ -30,7 +30,7 @@ function TablaProductos({data}) {
   );
 
   return (
-    <div className="p-4 md:p-10 sm:ml-0 md:ml-64 overflow-x-auto"> {/* Ajusta el margen en pantallas medianas */}
+    <div className="p-4 md:p-10 sm:ml-0 overflow-x-auto"> {/* Ajusta el margen en pantallas medianas */}
   <table className="w-full shadow-md rounded-lg text-center bg-white r">
     <thead className="bg-pink-500 text-white">
       <tr>

@@ -11,9 +11,10 @@ export const getIngresos = async (req, res) => {
 
 export const crearIngreso = async (req, res) => {
   try {
-    const { cantidad } = req.body;
+    const { cantidad, descripcion } = req.body;
     const newIngreso = new Ingreso({
       cantidad: cantidad,
+      descripcion: descripcion,
     });
     await newIngreso.save();
     res.json(newIngreso);
@@ -36,10 +37,11 @@ export const deleteIngreso= async (req, res) => {
 export const updateIngreso = async (req, res) => {
   console.log(req.params.id);
   try {
-    const { cantidad } = req.body;
+    const { cantidad, descripcion } = req.body;
     const ingresoUpdate = await Ingreso.findOneAndUpdate(
       { _id: req.params.id },
       { cantidad },
+      { descripcion },
       { new: true }
     );
 

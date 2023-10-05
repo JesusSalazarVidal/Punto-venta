@@ -12,11 +12,7 @@ function UsuariosPage() {
 
   if (usuarios.length === 0) return <h1>No hay Usuarios disponibles</h1>;
   return(
-    <div>
-      <SidebarMenu />
-      <div className="sm:ml-64 w-8 mt-20">
-        
-      </div>
+    <div className="p-4">
       <h1 className="text-3xl font-bold text-center mb-3">Usuarios</h1>
       <TablaUsuarios data={usuarios}/>
       

@@ -4,7 +4,7 @@ function DetalleVenta({ vent }) {
     function formatFecha(fechaString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(fechaString).toLocaleDateString(undefined, options);
-      }
+      } 
 
   return (
     <div className="bg-white border border-gray-400 p-4 rounded-md shadow-md max-w-xs mx-auto">

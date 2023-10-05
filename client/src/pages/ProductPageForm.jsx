@@ -1,14 +1,31 @@
 import { useForm } from "react-hook-form";
 import { useProduct } from "../Context/ProductContext";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SidebarMenu from "../components/SidebarMenu";
 
 function ProductPageForm() {
-  const { register, handleSubmit, setValue } = useForm();
-  const { createProducto, getProducto, updateProducto } = useProduct();
-  const navigate = useNavigate();
-  const params = useParams();
+    const {register, handleSubmit, setValue} = useForm();
+    const {createProducto, getProducto, updateProducto} = useProduct();
+    const navigate = useNavigate();
+    const params = useParams();
+    const [mostrarMensaje, setMostrarMensaje] = useState(false);
+
+  const [formData, setFormData] = useState({
+    // Define aquí los campos de tu formulario y sus valores iniciales
+    nombre: "",
+    tipo: "",
+    precio:"",
+
+  });
+
+  const handleChange = (data) => {
+    const { name, value } = data.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   useEffect(() => {
     async function loadProducto() {
@@ -20,18 +37,35 @@ function ProductPageForm() {
         setValue("tipo", product.tipo);
         setValue("precio", product.precio);
       }
-    }
-    loadProducto();
-  }, []);
+      loadProducto()
+    }}, [])
+    
+    const onSubmit = handleSubmit((data) => {
+        if (params.id) {
+          updateProducto(params.id, data)
+        } else {
+          createProducto(data);  
+          // Muestra el mensaje de confirmación
+          setMostrarMensaje(true);
+          // Reinicia los campos del formulario
+          setFormData({
+            nombre: "",
+            tipo: "",
+            precio:"",
+          });      
+        }
+        //navigate('/obtenerProductos')
+    }) 
 
-  const onSubmit = handleSubmit((data) => {
-    if (params.id) {
-      updateProducto(params.id, data);
-    } else {
-      createProducto(data);
-    }
-    navigate("/obtenerProductos");
-  });
+    useEffect(() => {
+      let timeout;
+      if (mostrarMensaje) {
+        timeout = setTimeout(() => {
+          setMostrarMensaje(false);
+        }, 3000); // Oculta el mensaje después de 3 segundos
+      }
+      return () => clearTimeout(timeout);
+    }, [mostrarMensaje]);
 
   return (
     <div>
