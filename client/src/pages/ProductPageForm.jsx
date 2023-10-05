@@ -44,6 +44,7 @@ function ProductPageForm() {
     const onSubmit = handleSubmit((data) => {
         if (params.id) {
           updateProducto(params.id, data)
+          
         } else {
           createProducto(data);  
           // Muestra el mensaje de confirmación
