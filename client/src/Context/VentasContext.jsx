@@ -25,6 +25,7 @@ export function VentaProvider({ children }) {
     total: 0,
   });
   const [mensaje, setMensaje] = useState(null); // Estado para el mensaje
+  const [mensajeError, setMensajeError] = useState(null)
 
   const getVentas = async () => {
     try {
@@ -117,12 +118,28 @@ export function VentaProvider({ children }) {
       // Si hay un mensaje, configura un temporizador para ocultarlo después de 5 segundos
       const timerId = setTimeout(() => {
         setMensaje(null); // Oculta el mensaje
+        setMensajeError(null)
       }, 3000); // 5000 milisegundos = 5 segundos
 
       // Limpia el temporizador si el componente se desmonta o el mensaje cambia
       return () => clearTimeout(timerId);
     }
   }, [mensaje]);
+
+  useEffect(() => {
+    if (mensajeError) {
+      // Si hay un mensaje, configura un temporizador para ocultarlo después de 5 segundos
+      const timerId = setTimeout(() => {
+        setMensajeError(null)
+      }, 3000); // 5000 milisegundos = 5 segundos
+
+      // Limpia el temporizador si el componente se desmonta o el mensaje cambia
+      return () => clearTimeout(timerId);
+    }
+  }, [mensajeError]);
+
+
+ 
 
   return (
     <VentaContext.Provider
@@ -137,6 +154,9 @@ export function VentaProvider({ children }) {
         setCuenta,
         deleteCuenta,
         mensaje,
+        setMensaje,
+        mensajeError,
+        setMensajeError,
       }}
     >
       {children}

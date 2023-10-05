@@ -3,24 +3,21 @@ import { Link } from "react-router-dom";
 import { FiTrash2 } from "react-icons/fi";
 import { FiEdit3 } from "react-icons/fi";
 import { useVentas } from "../Context/VentasContext";
+import { useState } from "react";
 
 function ProductCard({ product }) {
   
   const { deleteProducto } = useProduct();
   const {cuenta, setCuenta}= useVentas()
+  
+
+  const [isSelected, setIsSelected] = useState(false);
+  const [isProductAdded, setIsProductAdded] = useState(false);
+  const cardClassName = `max-w-md w-full p-10 rounded-md border-2 border-pink-700 ${
+    isSelected ? 'bg-blue-300 ' : 'bg-pink-500 hover:bg-pink-300'
+  }`;
 
   function handleAgregarProducto() {
-    
-   /*
-    //Agrega el producto seleccionado a la cuenta
-    const nuevoProducto = { ...product };
-    console.log(nuevoProducto) // Clona el producto para evitar mutaciones no deseadas
-    setCuenta((prevCuenta) => ({
-      ...prevCuenta,
-      productos: [...prevCuenta.productos, nuevoProducto],
-      total: prevCuenta.total + nuevoProducto.precio,
-    }));
-    */
     const nuevoProducto = { ...product };
     const prevProductos = cuenta.productos;
     
@@ -50,18 +47,37 @@ function ProductCard({ product }) {
       productos: prevProductos,
       total: nuevoTotal,
     }));
+
+
+    setIsSelected(true);
+    setIsProductAdded(true);
+
+    // Simula un retraso de 2 segundos antes de restablecer el estado
+    setTimeout(() => {
+      setIsSelected(false);
+      setIsProductAdded(false);
+    }, 500); // 2 segundos
     
   }
   //console.log(cuenta)
+
+  
+ 
   
   return (
-    <div onClick={handleAgregarProducto} className="bg-pink-500 hover:bg-pink-300 max-w-md w-full p-10 rounded-md border-2 border-pink-700">
+    <>
+    
+    
+    <div onClick={handleAgregarProducto} className={cardClassName} >
       <header className="flex justify-between">
         <h1 className="text-2xl font-bold">{product.nombre}</h1>
       </header>
       <p className="text-slate-800">Tipo: {product.tipo}</p>
       <p className="text-slate-800">Precio: ${product.precio}</p>
+
+      
     </div>
+    </>
   );
 }
 

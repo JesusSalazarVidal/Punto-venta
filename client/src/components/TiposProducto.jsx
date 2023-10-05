@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import { useProduct } from "../Context/ProductContext";
 import ModalProductos from "../components/ModalProductos";
 
-import paletas from "../img/paletas.png";
-import maltedas from "../img/malteadas.png";
-import nachos from "../img/nachos.png";
-import nieves from "../img/nieves.png";
-import ProductCard from "../components/ProductCard";
+import paletas from "../img/Paletas.png";
+import maltedas from "../img/Malteadas.png";
+import nachos from "../img/Nachos.png";
+import nieves from "../img/Nieves.png";
+import { useState } from "react";
 
-function TiposProducto({ tipo }) {
+function TiposProducto({tipo}) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -29,11 +27,11 @@ function TiposProducto({ tipo }) {
         </header>
         <img
           src={
-            tipo === "paletas"
+            tipo === "Paletas"
               ? paletas
-              : tipo === "malteadas"
+              : tipo === "Malteadas"
               ? maltedas
-              : tipo === "nachos"? nachos : nieves         }
+              : tipo === "Nachos"? nachos : nieves         }
           alt={tipo}
           className="w-40 h-auto object-cover mb-2"
         />
