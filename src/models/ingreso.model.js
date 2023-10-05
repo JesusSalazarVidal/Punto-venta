@@ -18,6 +18,10 @@ const ingresoSchema = mongoose.Schema(
       default: Date.now,
       required: true,
     },
+    descripcion: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

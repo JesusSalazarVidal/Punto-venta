@@ -11,7 +11,7 @@ function Us() {
             <li className="mb-2 font-black text-center text-2xl"> {usuario.nombre}</li>
             <li className="mb-2"> Usuario: {usuario.nombreUsuario}</li>
             <li>
-            <Link className="mb-2 p-3" to={"/tablaVentas"}>Tikets</Link>
+            <Link className="mb-2 p-3" to={"/sidebarMenu"}>Menu</Link>
             </li>
             <li>
             <Link className="mb-2 p-3" to={"/index"}>Generar Venta</Link>

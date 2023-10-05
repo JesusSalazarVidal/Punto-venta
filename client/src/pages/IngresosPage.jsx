@@ -16,13 +16,7 @@ function IngresosPage() {
 
   return (
     <div>
-      <SidebarMenu />
-      <div className="sm:ml-64 w-8 mt-20">
-        <Link to={"/crearIngreso"} className="text-pink-800 hover:text-black">
-          <AiOutlinePlusSquare size={30} />
-        </Link>
-      </div>
-      <h1 className="text-3xl font-bold text-center mb-3 pl-40">Ingresos</h1>
+      <h1 className="text-3xl font-bold text-center mb-3 pt-8">Ingresos</h1>
       <Tabla data={ingresos} tipo={"Ingresos"}></Tabla>
     </div>
   );

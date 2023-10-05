@@ -10,19 +10,25 @@ import ProductCard from "../components/ProductCard";
 
 function TiposProducto({ tipo }) {
   const [isModalOpen, setModalOpen] = useState(false);
+  // rastrear si el elemento esta seleccionado
+  const [isSelected, setIsSelected] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
+    setIsSelected(true);
   };
 
   const closeModal = () => {
     setModalOpen(false);
+    setIsSelected(false);
   };
   return (
     <>
       <div
         onClick={openModal}
-        className="bg-pink-500 hover:bg-pink-300 max-w-md w-full p-10 rounded-md border-2 border-pink-700"
+        className={`max-w-md w-full p-10 rounded-md border-2 ${
+          isSelected ? 'bg-purple-400' : 'bg-pink-300 hover:bg-purple-400'
+        } border-pink-700`}  
       >
         <header className="flex justify-center">
           <h1 className="text-2xl font-bold">{tipo}</h1>

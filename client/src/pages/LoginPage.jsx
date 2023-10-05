@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../Context/AuthContext";
 import {Link, useNavigate} from 'react-router-dom'
 import { useEffect } from "react";
-import Logo from "../img/logo.jpg"
+import Logo from "../img/logo.png"
 
 function LoginPage() {
   const {
@@ -38,7 +38,7 @@ const { usuario} = useAuth()
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">
       <div className="bg-pink-300 border-2 border-pink-800 max-w-md w-full p-10 rounded-md">
       <div className="flex justify-center items-center">
-      <img className="w-1/2 h-auto " src={Logo} />
+      <img className="w-1/2 h-auto mb-5" src={Logo} />
       </div>
         <h1 className="text-2xl font-bold">Login</h1>
         {

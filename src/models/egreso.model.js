@@ -21,6 +21,10 @@ const egresoSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
         required: true
+      },
+      descripcion: {
+        type: String,
+        required: true
       }
 },{timestamps: true,});
 

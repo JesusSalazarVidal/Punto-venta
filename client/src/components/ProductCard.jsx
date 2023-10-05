@@ -55,7 +55,7 @@ function ProductCard({ product }) {
   //console.log(cuenta)
   
   return (
-    <div onClick={handleAgregarProducto} className="bg-pink-500 hover:bg-pink-300 max-w-md w-full p-10 rounded-md border-2 border-pink-700">
+    <div onClick={handleAgregarProducto} className="bg-pink-300 hover:bg-purple-400 max-w-md w-full p-10 rounded-md border-2 border-pink-700">
       <header className="flex justify-between">
         <h1 className="text-2xl font-bold">{product.nombre}</h1>
       </header>

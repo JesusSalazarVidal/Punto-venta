@@ -13,10 +13,11 @@ export const getEgresos = async (req, res) => {
 
 export const crearEgreso = async (req, res) => {
   try {
-    const { cantidad } = req.body;
+    const { cantidad, descripcion } = req.body;
     const newEgreso = new Egreso({
       usuario: req.user.id,
       cantidad: cantidad,
+      descripcion: descripcion,
     });
     await newEgreso.save();
     res.json(newEgreso);
@@ -38,10 +39,11 @@ export const deleteEgreso = async (req, res) => {
 export const updateEgreso = async (req, res) => {
   console.log(req.params.id);
   try {
-    const { cantidad } = req.body;
+    const { cantidad, descripcion } = req.body;
     const egresoUpdate = await Egreso.findOneAndUpdate(
       { _id: req.params.id },
       { cantidad },
+      { descripcion },
       { new: true }
     );
 

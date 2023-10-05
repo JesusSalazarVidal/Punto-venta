@@ -17,13 +17,7 @@ function EgresosPage() {
 
   return (
     <div>
-      <SidebarMenu/>
-      <div className="sm:ml-64 w-8 mt-20">
-        <Link to={"/egresos/new"} className="text-pink-800 hover:text-black">
-          <AiOutlinePlusSquare size={30} />
-        </Link> 
-      </div>
-      <h1 className="text-3xl font-bold text-center mb-3 pl-40">Egresos</h1>
+      <h1 className="text-3xl font-bold text-center mb-3 pt-8">Egresos</h1>
       <Tabla data={egresos} tipo={'Egresos'}></Tabla>
     </div>
   );

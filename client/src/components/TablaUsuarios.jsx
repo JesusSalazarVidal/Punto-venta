@@ -28,7 +28,7 @@ function TablaUsuarios({ data }) {
     currentPage * itemsPerPage
   );
   return (
-    <div className="p-10 sm:ml-64 overflow-x-auto">
+    <div className="p-10 overflow-x-auto">
       <table className=" w-full  shadow-md rounded-lgtext-center bg-white text-center">
         <thead className="bg-pink-500 text-white">
           <tr>
