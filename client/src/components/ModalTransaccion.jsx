@@ -35,65 +35,69 @@ function ModalTransaccion({ isOpen, onClose, venta }) {
   };
 
   return (
-    <>
-      <div className="fixed inset-0 flex items-center z-50">
-        <div className="modal-container bg-pink-200 w-2/6 h-auto mx-5 p-4 rounded shadow-lg absolute z-50 right-0 top-20">
-          {/* Icono en la esquina superior derecha */}
-          <div className="absolute top-0 right-0 p-2">
-            <AiOutlineClose
-              size={32}
-              onClick={onClose}
-              style={{ color: "red" }}
-            />
-          </div>
-          <h1 className="text-center font-bold text-3xl ">Venta</h1>
-
-          <h3 className="text-lg font-bold">Productos:</h3>
-
-          <ul className="list-disc pl-6 mt-2">
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="modal-container bg-white border border-gray-300 w-2/6 mx-5 p-4 rounded-lg shadow-lg absolute z-50 right-0 top-20">
+        <div className="absolute top-0 right-0 p-2">
+          <AiOutlineClose size={32} onClick={onClose} style={{ color: "red" }} />
+        </div>
+        <h1 className="text-center font-bold text-2xl mb-2">Venta</h1>
+  
+        <div className="border-t border-b border-gray-300 py-2 my-2">
+          <h3 className="text-lg font-semibold">Productos:</h3>
+  
+          <ul className="list-decimal pl-6 mt-2">
             {venta.productos.map((producto) => (
               <li key={producto.id} className="text-gray-800">
-                {producto.cantidad} {producto.nombre} ${producto.precio} <br />
+                {producto.cantidad} {producto.nombre} ${producto.precio.toFixed(2)}
               </li>
             ))}
           </ul>
-          <div className=" text-xl font-bold text-purple-600">
-            Total: ${venta.total}
+        </div>
+  
+        <div className="flex justify-between mt-2">
+          <span className="text-lg font-semibold">Total:</span>
+          <span className="text-xl font-bold text-purple-600">
+            ${venta.total.toFixed(2)}
+          </span>
+        </div>
+  
+        <form name="cambio" className="mt-4">
+          <div className="mb-2">
+            <label className="block text-sm font-semibold">Cantidad Recibida:</label>
+            <input
+              type="number"
+              value={cantidadRecibida}
+              onChange={handleCantidadCambio}
+              className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-3 w-full"
+              autoFocus
+              
+            />
           </div>
-
-          <form name="cambio" className="mt-3">
-            <label>
-              Cantidad Recibida:
-              <input
-                type="number"
-                value={cantidadRecibida}
-                onChange={handleCantidadCambio}
-                className="bg-emerald-200"
-                autoFocus
-              />
-            </label>
-          </form>
-          <p>Cambio: ${cambio.toFixed(2)}</p>
-
-          <div className="flex justify-center items-center ">
-            <button
-              onClick={() => {
-                setCantidadRecibida("");
-                setCambio(0);
-                createVenta(venta);
-                console.log(venta.total);
-                createIngreso(ingreso);
-                onClose();
-              }}
-              className="bg-green-400 w-[185px] h-[48px] uppercase text-black font-semibold hover:bg-blue-300 mt-5 rounded-xl"
-            >
-              Finalizar Compra
-            </button>
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-semibold">Cambio:</span>
+            <span className="text-lg font-bold">${cambio.toFixed(2)}</span>
           </div>
+        </form>
+  
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={() => {
+              setCantidadRecibida("");
+              setCambio(0);
+              createVenta(venta);
+              createIngreso(ingreso);
+              onClose();
+            }}
+            className="bg-blue-500 text-white w-full py-2 font-semibold rounded-lg hover:bg-blue-600"
+          >
+            Finalizar Compra
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
+  
+  
 }
 
 export default ModalTransaccion;
