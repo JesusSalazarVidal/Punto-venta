@@ -16,8 +16,10 @@ function ModalTransaccion({ isOpen, onClose, venta }) {
   const handleGuardar = (venta) => {
     setCantidadRecibida("");
     setCambio(0);
-    console.log(venta);
-    onClose;
+    createVenta(venta);
+    console.log(venta.total);
+    createIngreso(ingreso);
+    onClose();
   };
 
   const handleCantidadCambio = (event) => {

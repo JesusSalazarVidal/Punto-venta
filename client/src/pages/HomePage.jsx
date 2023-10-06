@@ -31,6 +31,8 @@ function HomePage() {
     { id: 2, tipo: "Nieves" },
     { id: 3, tipo: "Nachos" },
     { id: 4, tipo: "Malteadas" },
+    { id: 5, tipo: "Aguas" },
+    { id: 6, tipo: "Otros" },
   ];
 
   return (

@@ -99,6 +99,7 @@ function ProductPageForm() {
                 <option value="Malteadas">Maltedas</option>
                 <option value="Nachos">Nachos</option>
                 <option value="Aguas">Aguas</option>
+                <option value="Otros">Otros</option>
 
                 
               </select>

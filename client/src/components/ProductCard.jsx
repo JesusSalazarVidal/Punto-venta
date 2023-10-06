@@ -13,8 +13,9 @@ function ProductCard({ product }) {
 
   const [isSelected, setIsSelected] = useState(false);
   const [isProductAdded, setIsProductAdded] = useState(false);
-  const cardClassName = `max-w-md w-full p-10 rounded-md border-2 border-pink-700 ${
-    isSelected ? 'bg-blue-300 ' : 'bg-pink-500 hover:bg-pink-300'
+
+  const cardClassName = `relative max-w-md w-full p-10 rounded-md border-2 border-pink-700 ${
+    isSelected ? 'bg-blue-300 ' : 'bg-pink-300 hover:bg-pink-100'
   }`;
 
   function handleAgregarProducto() {
@@ -69,11 +70,12 @@ function ProductCard({ product }) {
     
     
     <div onClick={handleAgregarProducto} className={cardClassName} >
-      <header className="flex justify-between">
+      <header className="flex justify-between top-0 relative ">
         <h1 className="text-2xl font-bold">{product.nombre}</h1>
       </header>
-      <p className="text-slate-800">Tipo: {product.tipo}</p>
-      <p className="text-slate-800">Precio: ${product.precio}</p>
+      <div className="absolute bottom-0 w[100%]" >
+      <h2 className="font-bold text-blue-500 text-3xl  mt-3">${product.precio}</h2>
+      </div>
 
       
     </div>

@@ -1,10 +1,20 @@
 import ModalProductos from "../components/ModalProductos";
-
-import paletas from "../img/Paletas.png";
-import maltedas from "../img/Malteadas.png";
-import nachos from "../img/Nachos.png";
-import nieves from "../img/Nieves.png";
 import { useState } from "react";
+import Paletas from '../img/Paletas.png'
+import Malteadas from '../img/Malteadas.png'
+import Nachos from '../img/Nachos.png'
+import Nieves from '../img/Nieves.png'
+import Aguas from '../img/Aguas.png'
+import Otros from '../img/Otros.png'
+
+const tipoImagenes = {
+  Paletas,
+  Malteadas,
+  Nachos,
+  Nieves,
+  Aguas,
+  Otros,
+};
 
 function TiposProducto({tipo}) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -31,16 +41,7 @@ function TiposProducto({tipo}) {
         <header className="flex justify-center">
           <h1 className="text-2xl font-bold">{tipo}</h1>
         </header>
-        <img
-          src={
-            tipo === "Paletas"
-              ? paletas
-              : tipo === "Malteadas"
-              ? maltedas
-              : tipo === "Nachos"? nachos : nieves         }
-          alt={tipo}
-          className="w-40 h-auto object-cover mb-2"
-        />
+        <img src={tipoImagenes[tipo]} alt={tipo} className="w-40 h-auto object-cover mb-2" />
       </div>
       <ModalProductos isOpen={isModalOpen} onClose={closeModal} tipo={tipo} />
     </>
