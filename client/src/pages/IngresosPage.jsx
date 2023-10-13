@@ -20,7 +20,7 @@ function IngresosPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-center mb-3 pt-8">Ingresos</h1>
+      <h1 className="text-3xl font-bold text-center p-3 md:mt-0">Ingresos</h1>
       <div className="flex">
         <BuscadorReporte onSearch={handleSearch} />
         <ReportePDF data={ingresos}></ReportePDF>

@@ -4,11 +4,17 @@ import { useState } from "react";
 import Paginator from "./Paginator";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useForm } from "react-hook-form";
+import ModalEditarUsuario from "./ModalEditarUsuario";
 
 function TablaUsuarios({ data }) {
   //Verificamos si el arreglo de datos esta vacio o es nulo
   if (!data.length === 0) return <h1>No hay datos siponibles</h1>;
   const { deleteUsuario } = useUsuarios();
+  const { register } = useForm();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedUsuario, setSelectedUsuario] = useState(null);
+  const [idEditar, setidEditar] = useState();
 
   // Estados para el paginador
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,6 +33,23 @@ function TablaUsuarios({ data }) {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+
+  const openEditModal = (usuario) => {
+    console.log("usuario: ", usuario);
+    if (usuario) {
+      setSelectedUsuario(usuario);
+      setidEditar(usuario);
+      setIsEditModalOpen(true);
+    }
+  };
+
+  const closeModals = () => {
+    setIsEditModalOpen(false);
+    setSelectedUsuario(null);
+    setidEditar(null);
+  };
+
   return (
     <div className="p-10 overflow-x-auto">
       <table className=" w-full  shadow-md rounded-lgtext-center bg-white text-center">
@@ -54,7 +77,8 @@ function TablaUsuarios({ data }) {
                   {/* Ajusta el margen en diferentes tamaños de pantalla */}
                   <Link
                     className="p-2"
-                    to={`/actualizarUsuario/${usuario._id}`}
+                    
+                    onClick={() => openEditModal(usuario._id)}
                   >
                     <BiEdit size={20} className="text-purple-600" />
                   </Link>
@@ -73,6 +97,11 @@ function TablaUsuarios({ data }) {
           ))}
         </tbody>
       </table>
+      
+          <ModalEditarUsuario isOpen={isEditModalOpen}
+            onClose={() => setIsEditModalOpen(false)}
+            id={idEditar}
+          />
       <Paginator
         currentPage={currentPage}
         totalPages={totalPages}

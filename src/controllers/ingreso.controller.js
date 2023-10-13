@@ -42,14 +42,16 @@ export const updateIngreso = async (req, res) => {
     const { cantidad, descripcion } = req.body;
     const ingresoUpdate = await Ingreso.findOneAndUpdate(
       { _id: req.params.id },
-      { cantidad },
-      { descripcion },
+      { cantidad, descripcion },
       { new: true }
     );
 
     return res.json(ingresoUpdate);
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    // Maneja cualquier error potencial aquí y envía una respuesta apropiada.
+    console.error(error);
+    // Envía una respuesta de error, si es necesario.
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 

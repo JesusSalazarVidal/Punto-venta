@@ -18,7 +18,7 @@ function EgresosPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-center mb-3 pt-8">Egresos</h1>
+      <h1 className="text-3xl font-bold text-center p-3 md:mt-0">Egresos</h1>
       <ReportePDF data={egresos}/>
       <Tabla data={egresos} tipo={'Egresos'}></Tabla>
     </div>

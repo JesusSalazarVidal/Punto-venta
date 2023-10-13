@@ -42,16 +42,18 @@ export const updateEgreso = async (req, res) => {
     const { cantidad, descripcion } = req.body;
     const egresoUpdate = await Egreso.findOneAndUpdate(
       { _id: req.params.id },
-      { cantidad },
-      { descripcion },
+      { cantidad, descripcion },
       { new: true }
     );
-
-    return res.json(egresoUpdate);
+  
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    // Maneja cualquier error potencial aquí y envía una respuesta apropiada.
+    console.error(error);
+    // Envía una respuesta de error, si es necesario.
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+
 
 export const getEgreso = async (req, res) => {
   try {

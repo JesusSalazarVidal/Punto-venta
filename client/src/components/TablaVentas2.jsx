@@ -57,15 +57,18 @@ function TablaVentas({ data }) {
 
 
   return (
-    <div className="p-10 overflow-x-auto">
-      <table className=" w-4/5  shadow-md rounded-lgtext-center bg-white text-center">
-        <thead className="bg-pink-500 text-white">
+    <div className="p-2 ">
+      <table className=" w-full shadow-md rounded-lg  bg-white text-center">
+      <thead className="bg-pink-500 text-white">
           <tr>
             <th className="py-2 px-4">Fecha y Hora</th>
             <th className="py-2 px-4">Total</th>
             <th className="py-2 px-4">Acciones</th>
           </tr>
         </thead>
+        </table>
+<div className=" overflow-y-auto h-96">
+      <table className=" w-full shadow-md rounded-lg  bg-white text-center">
         <tbody className="text-gray-700 text-center">
           {paginatedData.map((registro) => (
             <tr className="py-2 px-4" key={registro._id}>
@@ -82,16 +85,16 @@ function TablaVentas({ data }) {
           ))}
         </tbody>
       </table>
-      
-      <Paginator
-        currentPage={currentPage}
-        totalPages={uniqueDates.length}
-        onPageChange={handlePageChange}
-      />
 
       {selectedRegistro && (
         <ModalVenta isOpen={isModalOpen} onClose={closeModal} registro={selectedRegistro} />
       )}
+    </div>
+    <Paginator
+        currentPage={currentPage}
+        totalPages={uniqueDates.length}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

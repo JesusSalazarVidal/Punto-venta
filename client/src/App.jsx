@@ -20,6 +20,7 @@ import VentaFormPage from "./pages/VentaFormPage";
 import IngresosFormPage from "./pages/IngresosFormPage";
 import ProductPageForm from "./pages/ProductPageForm";
 import ProductPage from "./pages/ProductPage";
+import ModalEditarProducto from "./components/ModalEditarProducto";
 
 import ProtectedRoute from "./ProtectedRoute";
 import EgresoFormPage from "./pages/EgresoFormPage";
@@ -85,7 +86,7 @@ function App() {
                           />
                           <Route
                             path="/actualizarProducto/:id"
-                            element={<ProductPageForm />}
+                            element={<ModalEditarProducto />}
                           />
                           <Route
                             path="/crearIngreso"
