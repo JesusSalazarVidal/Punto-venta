@@ -6,6 +6,7 @@ import {
   getIngresoRequest,
   getIngresosRequest,
   updateIngresoRequest,
+  getIngresosByFechaRequest,
 } from "../api/ingresos";
 
 const IngresoContext = createContext();
@@ -26,14 +27,14 @@ export function IngresoProvider({ children }) {
       setIngresos(res.data);
       //console.log(res)
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   const deleteIngreso = async (id) => {
     try {
       const res = await deleteIngresoRequest(id);
-      console.log(res)
+      console.log(res);
       if (res.status === 204)
         setIngresos(ingresos.filter((ingreso) => ingreso._id !== id));
     } catch (error) {
@@ -67,6 +68,16 @@ export function IngresoProvider({ children }) {
     }
   };
 
+  const getIngresosByFecha = async (fecha) => {
+    try {
+      const res = await getIngresosByFechaRequest(fecha);
+      setIngresos(res.data)
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <IngresoContext.Provider
       value={{
@@ -76,6 +87,7 @@ export function IngresoProvider({ children }) {
         createIngreso,
         deleteIngreso,
         updateIngreso,
+        getIngresosByFecha,
       }}
     >
       {children}

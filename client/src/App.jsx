@@ -29,6 +29,7 @@ import VentasPage from "./pages/VentasPage";
 
 import TablaVentas from "./components/TablaVentas";
 import ProtectedAdmin from "./ProtectedAdmin";
+import EstadisticosPage from "./pages/EstadisticosPage";
 
 function App() {
   return (
@@ -97,6 +98,10 @@ function App() {
                           <Route
                             path="/actualizarIngreso/:id"
                             element={<IngresosFormPage />}
+                          />
+                          <Route
+                            path="/estadisticos"
+                            element={<EstadisticosPage />}
                           />
                         </Route>
 

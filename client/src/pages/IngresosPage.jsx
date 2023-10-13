@@ -1,22 +1,30 @@
 import { useEffect } from "react";
 import { useIngresos } from "../Context/IngresosContext";
 import Tabla from "../components/Tabla";
-import { AiOutlinePlusSquare } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import SidebarMenu from "../components/SidebarMenu";
+import ReportePDF from "../components/ReportePDF";
+import BuscadorReporte from "../components/BuscadorReporte";
 
 function IngresosPage() {
-  const { getIngresos, ingresos } = useIngresos();
+  const { getIngresos, ingresos, getIngresosByFecha } = useIngresos();
 
   useEffect(() => {
     getIngresos();
   }, []);
 
+  const handleSearch = (fecha) => {
+    getIngresosByFecha(fecha);
+  };
+
   if (ingresos.length === 0) return <h1>No hay Ingresos disponibles</h1>;
+  //console.log(ingresos)
 
   return (
     <div>
       <h1 className="text-3xl font-bold text-center mb-3 pt-8">Ingresos</h1>
+      <div className="flex">
+        <BuscadorReporte onSearch={handleSearch} />
+        <ReportePDF data={ingresos}></ReportePDF>
+      </div>
       <Tabla data={ingresos} tipo={"Ingresos"}></Tabla>
     </div>
   );
