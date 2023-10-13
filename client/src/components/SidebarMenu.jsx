@@ -95,42 +95,6 @@ function SidebarMenu() {
                 <span className="p-2 font-bold">Usuarios</span>
               </a>
             </li>
-            <li>
-              <a
-                href="#"
-                className={`flex items-center p-2 mt-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group ${
-                  activeTab === "agregarproducto" ? "bg-purple-500" : ""
-                }`}
-                onClick={() => handleTabClick("agregarproducto")}
-              >
-                <TbShoppingBagPlus className="flex-shrink-0 w-5 h-5  transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-purple-950" />
-                <span className="p-2 font-bold">Agregar Producto</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className={`flex items-center p-2 mt-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group ${
-                  activeTab === "agregaregreso" ? "bg-purple-500" : ""
-                }`}
-                onClick={() => handleTabClick("agregaregreso")}
-              >
-                <TbPremiumRights className="flex-shrink-0 w-5 h-5  transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-purple-950" />
-                <span className="p-2 font-bold">Agregar Egreso</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className={`flex items-center p-2 mt-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group ${
-                  activeTab === "agregaringreso" ? "bg-purple-500" : ""
-                }`}
-                onClick={() => handleTabClick("agregaringreso")}
-              >
-                <RiAddFill className="flex-shrink-0 w-5 h-5  transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-purple-950" />
-                <span className="p-2 font-bold">Agregar Ingreso</span>
-              </a>
-            </li>
           </ul>
         </div>
       </aside>
@@ -152,13 +116,6 @@ function SidebarMenu() {
           </div>
         )}
 
-        {activeTab === "agregarproducto" && (
-          <div>
-            {/* Aquí coloca el contenido específico de la página de Productos */}
-            <ProductPageForm />
-          </div>
-        )}
-
         {activeTab === "ventas" && (
           <div>
             {/* Aquí coloca el contenido específico de la página de Ventas */}
@@ -173,24 +130,10 @@ function SidebarMenu() {
           </div>
         )}
 
-{activeTab === "agregaregreso" && (
-          <div>
-            {/* Aquí coloca el contenido específico de la página de Productos */}
-            <EgresoFormPage />
-          </div>
-        )}
-
         {activeTab === "ingresos" && (
           <div>
             {/* Aquí coloca el contenido específico de la página de ingresos */}
             <IngresosPage />
-          </div>
-        )}
-
-        {activeTab === "agregaringreso" && (
-          <div>
-            {/* Aquí coloca el contenido específico de la página de Productos */}
-            <IngresosFormPage />
           </div>
         )}
 

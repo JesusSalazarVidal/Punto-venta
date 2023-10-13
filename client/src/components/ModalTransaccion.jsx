@@ -38,39 +38,45 @@ function ModalTransaccion({ isOpen, onClose, venta }) {
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="modal-container bg-white border border-gray-300 w-2/6 mx-5 p-4 rounded-lg shadow-lg absolute z-50 right-0 top-20">
         <div className="absolute top-0 right-0 p-2">
-          <AiOutlineClose size={32} onClick={onClose} style={{ color: "red" }} />
+          <AiOutlineClose
+            size={32}
+            onClick={onClose}
+            style={{ color: "red" }}
+          />
         </div>
         <h1 className="text-center font-bold text-2xl mb-2">Venta</h1>
-  
+
         <div className="border-t border-b border-gray-300 py-2 my-2">
           <h3 className="text-lg font-semibold">Productos:</h3>
-  
-          <ul className="list-decimal pl-6 mt-2">
+
+          <ul className="list pl-6 mt-2">
             {venta.productos.map((producto) => (
               <li key={producto.id} className="text-gray-800">
-                {producto.cantidad} {producto.nombre} ${producto.precio.toFixed(2)}
+                {producto.cantidad} {producto.nombre} $
+                {producto.precio.toFixed(2)}
               </li>
             ))}
           </ul>
         </div>
-  
+
         <div className="flex justify-between mt-2">
           <span className="text-lg font-semibold">Total:</span>
           <span className="text-xl font-bold text-purple-600">
             ${venta.total.toFixed(2)}
           </span>
         </div>
-  
+
         <form name="cambio" className="mt-4">
           <div className="mb-2">
-            <label className="block text-sm font-semibold">Cantidad Recibida:</label>
+            <label className="block text-sm font-semibold">
+              Cantidad Recibida:
+            </label>
             <input
               type="number"
               value={cantidadRecibida}
               onChange={handleCantidadCambio}
               className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-3 w-full"
               autoFocus
-              
             />
           </div>
           <div className="flex justify-between items-center">
@@ -78,13 +84,19 @@ function ModalTransaccion({ isOpen, onClose, venta }) {
             <span className="text-lg font-bold">${cambio.toFixed(2)}</span>
           </div>
         </form>
-  
+
         <div className="flex justify-center mt-4">
           <button
             onClick={() => {
               setCantidadRecibida("");
               setCambio(0);
               createVenta(venta);
+              // Crear un objeto de ingreso con las especificaciones
+              const ingreso = {
+                cantidad: venta.total, // Utilizar el total de la venta como cantidad
+                fecha: venta.fecha, // Utilizar la misma fecha de la venta
+                descripcion: "Ingreso generado por una venta",
+              };
               createIngreso(ingreso);
               onClose();
             }}
@@ -96,8 +108,6 @@ function ModalTransaccion({ isOpen, onClose, venta }) {
       </div>
     </div>
   );
-  
-  
 }
 
 export default ModalTransaccion;

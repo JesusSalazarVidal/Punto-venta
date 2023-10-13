@@ -13,7 +13,7 @@ function HomePage() {
 
 
   const openModal = () => {
-    if(cuenta.productos.length === 0){
+    if(cuenta.productos.length === 0){ 
       setIsModalOpen(false)
       setMensajeError('Agregue al menos un producto')
     }else{

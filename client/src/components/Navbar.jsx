@@ -29,7 +29,7 @@ function Navbar() {
   
             <div className="flex items-center ">
               <div className="flex items-center md:ml-96">
-                <div className="flex text-sm bg-pink-300 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-800 ">
+                <div className="flex text-sm bg-pink-200 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-800 ">
                   {isAuthenticated ? (
                     <>
                       {isMenuOpen && <Us />}

@@ -35,8 +35,8 @@ const { usuario} = useAuth()
   }}, [isAuthenticated]);
 
   return (
-    <div className="flex h-[calc(100vh-100px)] items-center justify-center">
-      <div className="bg-pink-300 border-2 border-pink-800 max-w-md w-full p-10 rounded-md">
+    <div className="flex h-[calc(100vh-100px)] items-center justify-center mt-16">
+      <div className="bg-emerald-300 border-2 border-pink-800 max-w-md w-full p-10 rounded-md">
       <div className="flex justify-center items-center">
       <img className="w-1/2 h-auto mb-5" src={Logo} />
       </div>

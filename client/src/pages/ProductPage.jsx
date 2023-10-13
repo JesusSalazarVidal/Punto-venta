@@ -21,7 +21,7 @@ function ProductPage() {
   return (
     <div>
 
-  <h1 className="text-3xl font-bold text-center mt-4 pt-8 md:mt-0">
+  <h1 className="text-3xl font-bold text-center p-3 md:mt-0">
     Productos
   </h1>
 

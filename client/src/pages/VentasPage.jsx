@@ -15,7 +15,7 @@ function VentasPage() {
 
     if(venta.length === 0) return(<h1>No hay ventas registradas</h1>)
   return (
-    <div className="p-4">
+    <div className="p-2">
       <h1 className="text-3xl font-bold text-center mr-32">Ventas</h1>
       <TablaVentas data={venta}></TablaVentas>
     </div>
