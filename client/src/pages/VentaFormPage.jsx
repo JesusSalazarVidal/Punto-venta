@@ -37,7 +37,7 @@ function VentaFormPage() {
     } else {
       createVenta(data);
     }
-    navigate("/obtenerVentas");
+    //navigate("/obtenerVentas");
   });
 
   return (

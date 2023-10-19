@@ -34,7 +34,7 @@ function UsuarioEditar({id}) {
 
   const onSubmit = handleSubmit(async (values) => {
     updateUsuario(id, values);
-    navigate("/sidebarMenu");
+    //navigate("/sidebarMenu");
   });
  
   return (

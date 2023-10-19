@@ -31,6 +31,7 @@ import VentasPage from "./pages/VentasPage";
 import TablaVentas from "./components/TablaVentas";
 import ProtectedAdmin from "./ProtectedAdmin";
 import EstadisticosPage from "./pages/EstadisticosPage";
+import GraficaVentas from "./components/GraficaVentas";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                   <main className="container mx-auto px-5">
                     <Navbar />
                     <Routes>
+                      
                       <Route path="/tablaVentas" element={<TablaVentas />} />
                       <Route path="/sidebarMenu" element={<SidebarMenu />} />
                       <Route path="/login" element={<LoginPage />} />

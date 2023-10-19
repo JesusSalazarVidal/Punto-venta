@@ -14,6 +14,7 @@ import ProductPageForm from '../pages/ProductPageForm';
 import EgresoFormPage from "../pages/EgresoFormPage";
 import IngresosFormPage from "../pages/IngresosFormPage"
 import { RiAddFill } from "react-icons/ri"
+import ResumenGeneral from '../pages/ResumenGeneral';
 
 
 
@@ -103,10 +104,11 @@ function SidebarMenu() {
       {/* Contenido principal */}
       <div className="mt-16 sm:ml-64">
         {!activeTab && (
-          <div className=' h-96 mt-32'>
+          <div className=' mt-20'>
             {/* Aquí coloca el contenido principal */}
-            <h1 className='font-bold text-center p-10 text-3xl'> ~ Bienvenido ~  </h1>
-            <img className="mx-auto w-1/2 h-auto" src={Logo} /> 
+           {/*  <h1 className='font-bold text-center p-10 text-3xl'> ~ Bienvenido ~  </h1> */}
+            {/* <img className="mx-auto w-1/2 h-auto" src={Logo} /> */}
+            <ResumenGeneral />
           </div>
         )}
         {activeTab === "productos" && (
