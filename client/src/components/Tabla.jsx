@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEgresos } from "../Context/EgresosContext";
 import { useIngresos } from "../Context/IngresosContext";
 import Paginator from "./Paginator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { TbPremiumRights } from "react-icons/tb";
@@ -16,9 +16,9 @@ function Tabla({ data, tipo }) {
   //Verificamos si el arreglo de datos esta vacio o es nulo
   if (!data.length === 0) return <h1>No hay datos siponibles</h1>;
 
-  const { deleteEgreso } = useEgresos();
+  const { deleteEgreso, getEgresos, egresos } = useEgresos();
 
-  const { deleteIngreso } = useIngresos();
+  const { deleteIngreso, getIngresos, ingresos } = useIngresos();
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -28,31 +28,53 @@ function Tabla({ data, tipo }) {
   const [selectedIngreso, setSelectedIngreso] = useState(null);
   const [idEditar, setidEditar] = useState();
   const [isEditing, setIsEditing] = useState();
+  const [isFirstTime, setIsFirstTime] = useState(true);
 
   // Estados para el paginador
   const itemsPerPage = 1; // Una página por día
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Agrupa las ventas por día
-  const salesByDay = data.reduce((acc, venta) => {
-    const fecha = new Date(venta.fecha).toLocaleDateString();
+  let newData = null;
+
+  if (tipo === "Egresos") {
+    newData = egresos;
+  } else if (tipo === "Ingresos") {
+    newData = ingresos;
+  }
+
+  console.log(ingresos);
+
+  // Agrupa las registros por día
+  const registrosByDay = newData.reduce((acc, registro) => {
+    const fecha = new Date(registro.fecha).toLocaleDateString();
     if (!acc[fecha]) {
       acc[fecha] = [];
     }
-    acc[fecha].push(venta);
+    acc[fecha].push(registro);
     return acc;
   }, {});
 
-  const uniqueDates = Object.keys(salesByDay);
+  const uniqueDates = Object.keys(registrosByDay);
 
   // Función para cambiar la página
   const handlePageChange = (page) => {
+    // Asegúrate de que la página sea válida y está dentro del rango
+  if (page >= 1 && page <= uniqueDates.length) {
+    // Establece la nueva página actual
     setCurrentPage(page);
+
+    // Accede a los datos correspondientes a la página seleccionada
+    const currentDate = uniqueDates[page - 1];
+    const newPaginatedData = registrosByDay[currentDate] || [];
+
+    // Actualiza la vista con los datos de la página
+    // Esto podría incluir la asignación de newPaginatedData a una variable de estado o directamente al componente de la tabla
+  }
   };
 
   // Filtra los datos según la página actual (por día)
   const currentDate = uniqueDates[currentPage - 1];
-  const paginatedData = salesByDay[currentDate];
+  const paginatedData = registrosByDay[currentDate] || [];
 
   // fecha y hora
   function formatFecha(fechaString) {
@@ -70,10 +92,12 @@ function Tabla({ data, tipo }) {
   const openAddModal = () => {
     setIsAddModalOpen(true);
     setIsEditing(true);
+    setIsFirstTime(false);
   };
   const openIngresosModal = () => {
     setIsIngresosModalOpen(true);
     setIsEditing(true);
+    setIsFirstTime(false);
   };
 
   const openEditModal = (register) => {
@@ -82,7 +106,8 @@ function Tabla({ data, tipo }) {
       setSelectedProduct(register);
       setidEditar(register);
       setIsEditModalOpen(true);
-      setIsEditing(false);
+      setIsEditing(true);
+      setIsFirstTime(false);
     }
   };
   const openIngresosEditModal = (register) => {
@@ -91,17 +116,21 @@ function Tabla({ data, tipo }) {
       setSelectedIngreso(register);
       setidEditar(register);
       setIsIngresosEditModalOpen(true);
-      setIsEditing(false);
+      setIsEditing(true);
+      setIsFirstTime(false);
     }
   };
 
-  const closeModal = () => {
-    setIsAddModalOpen(false);
-    setIsIngresosModalOpen(false);
-    setIsEditModalOpen(false);
-    setSelectedProduct(null);
-    setidEditar(null);
-  };
+  useEffect(() => {
+    if (!isEditing) {
+      getIngresos();
+      getEgresos();
+      setIsFirstTime(false);
+    }
+    setIsFirstTime(true);
+  }, [isEditing]);
+
+  console.log(paginatedData);
 
   return (
     <div className="overflow-x-auto">
@@ -185,23 +214,35 @@ function Tabla({ data, tipo }) {
 
           <ModalAgregar
             isOpen={isAddModalOpen} // Para el modal de agregar
-            onClose={() => setIsAddModalOpen(false)}
+            onClose={() => {
+              setIsAddModalOpen(false);
+              setIsEditing(false);
+            }}
             initialData={selectedProduct}
           />
           <ModalAgregarIngreso
             isOpeningreso={isIngresosModalOpen}
-            onCloseingreso={() => setIsIngresosModalOpen(false)}
+            onCloseingreso={() => {
+              setIsIngresosModalOpen(false);
+              setIsEditing(false);
+            }}
             initialData={selectedIngreso}
           />
 
           <ModalEditar
             isOpen={isEditModalOpen} // Para el modal de editar
-            onClose={() => setIsEditModalOpen(false)}
+            onClose={() => {
+              setIsEditModalOpen(false);
+              setIsEditing(false);
+            }}
             id={idEditar}
           />
           <ModalEditarIngreso
             isOpeningreso={isIngresosEditModalOpen}
-            onCloseingreso={() => setIsIngresosEditModalOpen(false)}
+            onCloseingreso={() => {
+              setIsIngresosEditModalOpen(false);
+              setIsEditing(false);
+            }}
             idingreso={idEditar}
           />
         </div>
@@ -216,19 +257,3 @@ function Tabla({ data, tipo }) {
 }
 
 export default Tabla;
-
-/* 
-<button
-                  onClick={() => {
-                    if (tipo == "Egresos") {
-                      deleteEgreso(registro._id);
-                    } else {
-                      deleteIngreso(registro._id);
-                    }
-                  }}
-                  className=" py-2 px-4"
-                >
-                  <RiDeleteBinLine
-                   size={20} className="text-red-600" />
-                </button>
-                */

@@ -1,3 +1,4 @@
+import moment from "moment";
 import Egreso from "../models/egreso.model.js";
 
 export const getEgresos = async (req, res) => {
@@ -63,5 +64,36 @@ export const getEgreso = async (req, res) => {
     return res.json(egreso);
   } catch (error) {
     return res.status(500).json({ message: error.message });
+  }
+};
+
+
+// Ruta para buscar Egresos por fecha
+export const getEgresosByFecha = async (req, res) => {
+  try {
+    const fechaBuscada = req.params.fecha; // Obtiene la fecha de la consulta
+
+    // Formatea la fecha proporcionada por el usuario al formato de tus registros
+    const fechaFormateada = moment(fechaBuscada, "YYYY-MM-DD").toDate();
+    //Obtiene la fecha inicial del día (00:00:00) y la fecha final del día (23:59:59)
+    const fechaInicio = moment(fechaFormateada).startOf("day").toDate();
+    const fechaFin = moment(fechaFormateada).endOf("day").toDate();
+
+    //console.log(fechaInicio);
+    //console.log(fechaFin)
+
+    // Realiza la búsqueda en la base de datos utilizando el modelo Ingreso
+    const egresos = await Egreso.find({
+      fecha: {
+        $gte: fechaInicio,
+        $lte: fechaFin,
+      }
+    });
+
+    // Devuelve los resultados al cliente
+    return res.json(egresos);
+  } catch (err) {
+    // Manejo de errores
+    return res.status(500).json({ error: "Error al buscar ingresos por fecha" });
   }
 };

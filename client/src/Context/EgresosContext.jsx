@@ -6,6 +6,7 @@ import {
   getEgresoRequest,
   getEgresosRequest,
   updateEgresoRequest,
+  getEgresosByFechaRequest,
 } from "../api/egresos";
 
 const EgresoContext = createContext();
@@ -67,6 +68,16 @@ export function EgresoProvider({ children }) {
     }
   };
 
+  const getEgresosByFecha = async (fecha) => {
+    try {
+      const res = await getEgresosByFechaRequest(fecha);
+      setEgresos(res.data)
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <EgresoContext.Provider
       value={{
@@ -76,6 +87,7 @@ export function EgresoProvider({ children }) {
         createEgreso,
         deleteEgreso,
         updateEgreso,
+        getEgresosByFecha,
       }}
     >
       {children}

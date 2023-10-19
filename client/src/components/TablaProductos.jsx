@@ -1,5 +1,5 @@
 import Paginator from "./Paginator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -17,9 +17,12 @@ function TablaProductos({ data }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [idEditar, setidEditar] = useState();
+  const [isEditing, setIsEditing] = useState(false);
+
+  const { getProductos, producto } = useProduct();
 
   //Verificamos si el arreglo de datos esta vacio o es nulo
-  if (!data.length === 0) return <h1>No hay datos siponibles</h1>;
+  if (!data.length === 0) return <h1>No hay datos disponibles</h1>;
 
   // Estados para el paginador
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,14 +36,14 @@ function TablaProductos({ data }) {
     setCurrentPage(page);
   };
 
-  // Filtra los datos según la página actual
-  const paginatedData = data.slice(
+  const paginatedData = producto.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
   const openAddModal = () => {
     setIsAddModalOpen(true);
+    setIsEditing(true);
   };
 
   const openEditModal = (register) => {
@@ -49,15 +52,15 @@ function TablaProductos({ data }) {
       setSelectedProduct(register);
       setidEditar(register);
       setIsEditModalOpen(true);
+      setIsEditing(true);
     }
   };
 
-  const closeModals = () => {
-    setIsAddModalOpen(false);
-    setIsEditModalOpen(false);
-    setSelectedProduct(null);
-    setidEditar(null);
-  };
+  useEffect(() => {
+    if (!isEditing) {
+      getProductos();
+    }
+  }, [isEditing]);
 
   return (
     <div className="overflow-x-auto">
@@ -128,12 +131,18 @@ function TablaProductos({ data }) {
           </table>
           <ModalAgregarProducto
             isOpen={isAddModalOpen}
-            onClose={() => setIsAddModalOpen(false)}
+            onClose={() => {
+              setIsAddModalOpen(false);
+              setIsEditing(false);
+            }}
             initialData={selectedProduct}
           />
           <ModalEditarProducto
             isOpen={isEditModalOpen}
-            onClose={() => setIsEditModalOpen(false)}
+            onClose={() => {
+              setIsEditModalOpen(false);
+              setIsEditing(false);
+            }}
             id={idEditar}
           />
         </div>

@@ -1,5 +1,6 @@
 import Venta from "../models/venta.model.js"
 import Producto from "../models/producto.model.js";
+import moment from "moment";
 
 export const getVentas = async (req, res) => {
     const ventas = await Venta.find()
@@ -18,6 +19,35 @@ export const getVenta = async (req, res) =>{
         
     }
 };
+
+export const getVentasByFecha = async (req, res) =>{
+    try {
+        const fechaBuscada = req.params.fecha; // Obtiene la fecha de la consulta
+        console.log(fechaBuscada)
+        // Formatea la fecha proporcionada por el usuario al formato de tus registros
+        const fechaFormateada = moment(fechaBuscada, "YYYY-MM-DD").toDate();
+        //Obtiene la fecha inicial del día (00:00:00) y la fecha final del día (23:59:59)
+        const fechaInicio = moment(fechaFormateada).startOf("day").toDate();
+        const fechaFin = moment(fechaFormateada).endOf("day").toDate();
+    
+        console.log(fechaInicio);
+        console.log(fechaFin)
+    
+        // Realiza la búsqueda en la base de datos utilizando el modelo Ingreso
+        const ventas = await Venta.find({
+          fecha: {
+            $gte: fechaInicio,
+            $lte: fechaFin,
+          }
+        });
+    
+        // Devuelve los resultados al cliente
+        return res.json(ventas);
+      } catch (err) {
+        // Manejo de errores
+        return res.status(500).json({ error: "Error al buscar ingresos por fecha" });
+      }
+}
 
 export const createVenta = async (req, res) => {
     console.log("hola")

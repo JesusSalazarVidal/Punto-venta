@@ -40,11 +40,13 @@ function ReportePDF({ data }) {
     
 
     pdf.addImage(logo, "PNG", 10, 10, 40, 12); // Ajusta las coordenadas (10, 10) y las dimensiones (40, 40) según tus necesidades
-    pdf.text("Paletería la Michoacana", 60, 15);
-    pdf.text("Mi reporte PDF con tabla", 60, 22);
+    pdf.text("Paletería la Michoacana", 80, 15);
+    pdf.text("Mi reporte PDF con tabla", 70, 22);
+     pdf.setFontSize(10);
     pdf.text(`Fecha: ${fechaActual} Hora:${horaActual}`, 120, 30);
     pdf.text(`el total es ${total}`, 60, 30)
 
+    pdf.setFontSize(12);
     function formatFecha(fechaString) {
       const options = {
         year: "numeric",

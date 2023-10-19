@@ -5,6 +5,7 @@ import {
   getVentasRequest,
   getVentaRequest,
   updateVentaRequest,
+  getVentasByFechaRequest,
 } from "../api/ventas";
 
 const VentaContext = createContext();
@@ -113,6 +114,16 @@ export function VentaProvider({ children }) {
     }
   };
 
+  const getVentasByFecha = async (fecha) => {
+    try {
+      const res = await getVentasByFechaRequest(fecha);
+      setVenta(res.data)
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (mensaje) {
       // Si hay un mensaje, configura un temporizador para ocultarlo después de 5 segundos
@@ -131,7 +142,7 @@ export function VentaProvider({ children }) {
       // Si hay un mensaje, configura un temporizador para ocultarlo después de 5 segundos
       const timerId = setTimeout(() => {
         setMensajeError(null)
-      }, 3000); // 5000 milisegundos = 5 segundos
+      }, 3000); // 3000 milisegundos = 3 segundos
 
       // Limpia el temporizador si el componente se desmonta o el mensaje cambia
       return () => clearTimeout(timerId);
@@ -149,6 +160,7 @@ export function VentaProvider({ children }) {
         getVentas,
         deleteVenta,
         getVenta,
+        getVentasByFecha,
         updateVenta,
         cuenta,
         setCuenta,

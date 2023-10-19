@@ -68,10 +68,8 @@ export const getIngreso = async (req, res) => {
 
 // Ruta para buscar ingresos por fecha
 export const getIngresosByFecha = async (req, res) => {
-  console.log("hola");
   try {
     const fechaBuscada = req.params.fecha; // Obtiene la fecha de la consulta
-    console.log(fechaBuscada);
 
     // Formatea la fecha proporcionada por el usuario al formato de tus registros
     const fechaFormateada = moment(fechaBuscada, "YYYY-MM-DD").toDate();
@@ -79,8 +77,8 @@ export const getIngresosByFecha = async (req, res) => {
     const fechaInicio = moment(fechaFormateada).startOf("day").toDate();
     const fechaFin = moment(fechaFormateada).endOf("day").toDate();
 
-    console.log(fechaInicio);
-    console.log(fechaFin)
+    //console.log(fechaInicio);
+    //console.log(fechaFin)
 
     // Realiza la búsqueda en la base de datos utilizando el modelo Ingreso
     const ingresos = await Ingreso.find({
