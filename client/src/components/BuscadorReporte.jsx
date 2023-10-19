@@ -6,13 +6,19 @@ function BuscadorReporte({ onSearch }) {
     onSearch(fecha);
   };
   return (
-    <div>
+    <div className="flex items-center">
       <input
         type="date"
         value={fecha}
         onChange={(e) => setFecha(e.target.value)}
+        class="w-40 p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
       />
-      <button className="mx-3" onClick={handleSearch}>Buscar</button>
+      <button
+        className="ml-3 px-4 py-2 bg-pink-300 font-bold text-gray-900 rounded-md hover:bg-purple-500 hover:text-white"
+        onClick={handleSearch}
+      >
+        Buscar
+      </button>
     </div>
   );
 }

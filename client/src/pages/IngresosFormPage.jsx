@@ -53,7 +53,7 @@ function IngresoFormPage({idingreso, tipo}) {
         descripcion: "",
       });
     }
-navigate('/SidebarMenu');
+//navigate('/SidebarMenu');
   });
 
   useEffect(() => { 

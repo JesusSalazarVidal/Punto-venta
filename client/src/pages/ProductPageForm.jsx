@@ -55,7 +55,7 @@ function ProductPageForm({ id }) {
         precio: "",
       });
     }
-    navigate("/sidebarMenu");
+    //navigate("/sidebarMenu");
   });
 
   useEffect(() => {

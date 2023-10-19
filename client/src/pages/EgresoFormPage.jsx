@@ -52,7 +52,7 @@ function EgresoFormPage({ id }) {
         descripcion: "",
       });
     }
-    navigate("/sidebarMenu");
+    //navigate("/sidebarMenu");
   });
 
   useEffect(() => {

@@ -15,7 +15,7 @@ function Paginator({ currentPage, totalPages, onPageChange }) {
   }
 
   return (
-    <nav className="mt-5">
+    <nav className="mt-0">
       <ul className="flex justify-end space-x-2">
         <li>
           <button

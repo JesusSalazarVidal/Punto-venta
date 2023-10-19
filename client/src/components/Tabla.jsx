@@ -14,7 +14,7 @@ import ModalEditarIngreso from "./ModalEditarIngreso";
 function Tabla({ data, tipo }) {
   const [egresosData, setEgresosData] = useState(data);
   //Verificamos si el arreglo de datos esta vacio o es nulo
-  if (!data.length === 0) return <h1>No hay datos siponibles</h1>;
+  if (!data.length === 0) return <h1>No hay datos disponibles</h1>;
 
   const { deleteEgreso, getEgresos, egresos } = useEgresos();
 
@@ -30,6 +30,7 @@ function Tabla({ data, tipo }) {
   const [isEditing, setIsEditing] = useState();
   const [isFirstTime, setIsFirstTime] = useState(true);
 
+  
   // Estados para el paginador
   const itemsPerPage = 1; // Una página por día
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,6 +56,7 @@ function Tabla({ data, tipo }) {
   }, {});
 
   const uniqueDates = Object.keys(registrosByDay);
+
 
   // Función para cambiar la página
   const handlePageChange = (page) => {
