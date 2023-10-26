@@ -5,11 +5,14 @@ import TablaCuenta from "../components/TablaCuenta";
 import TiposProducto from "../components/TiposProducto";
 import ModalTransaccion from '../components/ModalTransaccion'
 
+
 function HomePage() {
+  const [productsOrder, setProductsOrder] = useState([]); // Estado para el orden de los productos
   const { createVenta, mensaje, cuenta, mensajeError, setMensajeError, setMensaje} = useVentas();
   const ingreso = { cantidad: cuenta.total };
   const { createIngreso } = useIngresos();
   const [isModalOpen, setIsModalOpen] = useState(false)
+
 
 
   const openModal = () => {
@@ -34,15 +37,21 @@ function HomePage() {
     { id: 5, tipo: "Aguas" },
     { id: 6, tipo: "Otros" },
   ];
-
+ console.log("home productsorder",productsOrder)
   return (
     <div className="flex flex-col md:flex-row mt-16">
-      {/* División izquierda (4/6 de la pantalla) */}
+      {/* División izquierda (4/6 de la pantalla) */} 
       <div className="w-full md:w-4/6 p-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {tipos.map((tipo) => (
-            <TiposProducto key={tipo.id} tipo={tipo.tipo} />
-          ))}
+            <TiposProducto 
+            key={tipo.id} 
+            tipo={tipo.tipo} 
+            productsOrder={productsOrder} 
+            setProductsOrder={setProductsOrder} />
+            
+         ))} 
+        
         </div>
       </div>
 

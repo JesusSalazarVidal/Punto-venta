@@ -1,11 +1,13 @@
 import ModalProductos from "../components/ModalProductos";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Paletas from '../img/Paletas.png'
 import Malteadas from '../img/Malteadas.png'
 import Nachos from '../img/Nachos.png'
 import Nieves from '../img/Nieves.png'
 import Aguas from '../img/Aguas.png'
 import Otros from '../img/Otros.png'
+import Ejem from "./Ejem";
+
 
 const tipoImagenes = {
   Paletas,
@@ -16,20 +18,37 @@ const tipoImagenes = {
   Otros,
 };
 
-function TiposProducto({tipo}) {
-  const [isModalOpen, setModalOpen] = useState(false);
+function TiposProducto({tipo, productsOrder, setProductsOrder}) {
+  
+console.log("tipo productsOrder", productsOrder)
+  //const [isModalOpen, setModalOpen] = useState(false);
   // rastrear si el elemento esta seleccionado
   const [isSelected, setIsSelected] = useState(false);
+  const [selectedTipo, setSelectedTipo] = useState(""); // Nuevo estado para el tipo seleccionado
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const openModal = () => {
-    setModalOpen(true);
+    console.log("Abriendo modal para tipo:", tipo);
+    //setModalOpen(true);
+    setIsModalOpen(true);
     setIsSelected(true);
+    setSelectedTipo(tipo); // Establece el tipo seleccionado al abrir el modal
+    setProductsOrder([...productsOrder]); // Clonar el orden de los productos
+  
   };
 
   const closeModal = () => {
-    setModalOpen(false);
+    console.log("Cerrando modal para tipo:", tipo);
+    //setModalOpen(false);
     setIsSelected(false);
+    setSelectedTipo(""); // Reinicia el tipo seleccionado al cerrar el modal
+    setIsModalOpen(false);
+   //setProductsOrder(productsOrder); // Al cerrar, actualiza el orden
+    
+  
   };
+  
   return (
     <>
       <div
@@ -43,7 +62,14 @@ function TiposProducto({tipo}) {
         </header>
         <img src={tipoImagenes[tipo]} alt={tipo} className="w-40 h-auto object-cover mb-2" />
       </div>
-      <ModalProductos isOpen={isModalOpen} onClose={closeModal} tipo={tipo} />
+      <ModalProductos
+     isOpen={isSelected && tipo === selectedTipo} // Verifica el tipo seleccionado
+     // isOpen={isModalOpen}
+        onClose={closeModal}
+        tipo={tipo} 
+        productsOrder={productsOrder}
+        setProductsOrder={setProductsOrder} // Asegúrate de que se pase aquí
+      /> 
     </>
   );
 }

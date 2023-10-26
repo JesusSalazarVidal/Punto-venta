@@ -31,12 +31,13 @@ import VentasPage from "./pages/VentasPage";
 import TablaVentas from "./components/TablaVentas";
 import ProtectedAdmin from "./ProtectedAdmin";
 import EstadisticosPage from "./pages/EstadisticosPage";
-import GraficaVentas from "./components/GraficaVentas";
+
+
 
 function App() {
   return (
     <AuthProvider>
-      <ProductProvider>
+      <ProductProvider >
         <VentaProvider>
           <EgresoProvider>
             <UsuarioProvider>

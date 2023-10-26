@@ -6,6 +6,7 @@ import { useVentas } from "../Context/VentasContext";
 import { useState } from "react";
 
 function ProductCard({ product }) {
+  
   const { deleteProducto } = useProduct();
   const { cuenta, setCuenta } = useVentas();
 
@@ -18,6 +19,7 @@ function ProductCard({ product }) {
   }`;
 
   function handleAgregarProducto() {
+    console.log("Agregando producto:", product);
     const nuevoProducto = { ...product };
     const prevProductos = cuenta.productos;
 
@@ -46,16 +48,18 @@ function ProductCard({ product }) {
       ...prevCuenta,
       productos: prevProductos,
       total: nuevoTotal,
-    }));
+    })); 
 
     setIsSelected(true);
     setIsProductAdded(true);
 
     // Simula un retraso de 2 segundos antes de restablecer el estado
     setTimeout(() => {
+      console.log("Restableciendo estado");
       setIsSelected(false);
       setIsProductAdded(false);
     }, 500); // 2 segundos
+    
   }
   //console.log(cuenta)
 
