@@ -95,3 +95,43 @@ export const getIngresosByFecha = async (req, res) => {
     return res.status(500).json({ error: "Error al buscar ingresos por fecha" });
   }
 };
+
+
+
+export const getIngresosEntreFechas = async (req, res) => {
+  console.log("hola")
+  console.log(req.params)
+  try {
+    const { fechaInicio, fechaFin } = req.params;
+
+    if (!fechaInicio || !fechaFin) {
+      return res.status(400).json({ error: "Debes proporcionar ambas fechas." });
+    }
+
+    // Convierte las fechas a objetos Date
+    const startDate =  moment(fechaInicio, "YYYY-MM-DD").toDate();
+    const endDate =  moment(fechaFin, "YYYY-MM-DD").toDate();
+
+    
+    //Obtiene la fecha inicial del día (00:00:00) y la fecha final del día (23:59:59)
+    const fechaInicioHora = moment(startDate).startOf("day").toDate();
+    const fechaFinHora = moment(endDate).endOf("day").toDate();
+
+    console.log(fechaInicioHora);
+    console.log(fechaFinHora)
+
+    // Realiza la búsqueda en la base de datos utilizando el modelo Ingreso
+    const ingresos = await Ingreso.find({
+      fecha: {
+        $gte: fechaInicioHora,
+        $lte: fechaFinHora,
+      }
+    });
+
+    // Devuelve los resultados al cliente
+    return res.json(ingresos);
+  } catch (err) {
+    // Manejo de errores
+    return res.status(500).json({ error: "Error al buscar ingresos por fecha" });
+  }
+};

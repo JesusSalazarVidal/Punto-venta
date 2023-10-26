@@ -27,7 +27,6 @@ function VentasPage() {
       <h1 className="text-3xl font-bold text-center mr-32">Ventas</h1>
       <div className="flex">
         <BuscadorReporte onSearch={handleSearch} />
-        <ReportePDF data={venta}></ReportePDF>
       </div>
       <TablaVentas data={venta}></TablaVentas>
     </div>

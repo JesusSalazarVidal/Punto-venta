@@ -7,6 +7,7 @@ import {
   getIngresosRequest,
   updateIngresoRequest,
   getIngresosByFechaRequest,
+  getIngresosEntreFechasRequest,
 } from "../api/ingresos";
 
 const IngresoContext = createContext();
@@ -77,6 +78,15 @@ export function IngresoProvider({ children }) {
       console.error(error);
     }
   };
+  const getIngresosEntreFechas = async (fechas) => {
+    try {
+      const res = await getIngresosEntreFechasRequest(fechas);
+      setIngresos(res.data)
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <IngresoContext.Provider
@@ -88,6 +98,7 @@ export function IngresoProvider({ children }) {
         deleteIngreso,
         updateIngreso,
         getIngresosByFecha,
+        getIngresosEntreFechas,
       }}
     >
       {children}

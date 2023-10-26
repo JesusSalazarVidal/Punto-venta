@@ -5,7 +5,13 @@ import {
     deleteProductoRequest,
     getProductoRequest,
     updateProductoRequest,
-    getProductoByTipoRequest
+    getProductoByTipoRequest,
+    getProductoByCategoriaRequest,
+    getCategoriasRequest,
+    createCategoriaRequest,
+    getCategoriasByTipoRequest,
+    createTipoRequest,
+    getTiposRequest
 } from "../api/productos";
 
 const ProductContext = createContext();
@@ -21,6 +27,7 @@ export const useProduct = () => {
 
 export function ProductProvider({ children }) {
     const [producto, setProducto] = useState([]);
+    const [categoriaProductos, setCategoriaProductos] = useState([])
 
     const getProductos = async () => {
         try {
@@ -73,6 +80,61 @@ export function ProductProvider({ children }) {
         }
     }
 
+    const getProductosByCategoria = async(categoria) => {
+        try {
+            const res = await getProductoByCategoriaRequest(categoria)
+            setCategoriaProductos(res.data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    //Categoria 
+    const createCategoria = async (categoria) => {
+        const res = await createCategoriaRequest(categoria)
+        console.log(res)
+    }
+
+    const [categorias, setCategorias] = useState([])
+
+    const getCategorias = async () => {
+        try {
+            const res = await getCategoriasRequest()
+            setCategorias(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getCategoriasByTipo = async(tipo) => {
+        console.log(tipo)
+        try {
+            const res = await getCategoriasByTipoRequest(tipo)
+            setCategorias(res.data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    //tipo
+
+    const createTipo = async (tipo) => {
+        console.log(tipo)
+        const res = await createTipoRequest(tipo)
+        console.log(res)
+    }
+
+    const [tipos, setTipos] = useState([])
+
+    const getTipos = async () => {
+        try {
+            const res = await getTiposRequest()
+            setTipos(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <ProductContext.Provider 
         value={{
@@ -82,7 +144,16 @@ export function ProductProvider({ children }) {
             deleteProducto,
             getProducto,
             updateProducto,
-            getProductosByTipo
+            getProductosByTipo,
+            getProductosByCategoria,
+            categoriaProductos,
+            getCategorias,
+            getCategoriasByTipo,
+            createCategoria,
+            createTipo,
+            getTipos,
+            categorias,
+            tipos
         }}>
             {children}
         </ProductContext.Provider>

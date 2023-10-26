@@ -2,20 +2,24 @@ import { useForm } from "react-hook-form";
 import { useProduct } from "../Context/ProductContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SidebarMenu from "../components/SidebarMenu";
+import { GrAdd } from "react-icons/gr";
+import ModalAgregarTipo from "../components/ModalAgregarTipo";
+import ModalAgregarCategoria from "../components/ModalAgregarCategoria";
 
 function ProductPageForm({ id }) {
   const { register, handleSubmit, setValue } = useForm();
-  const { createProducto, getProducto, updateProducto } = useProduct();
-  const navigate = useNavigate();
-  const params = useParams();
+  const { createProducto, getProducto, updateProducto, getTipos, tipos, getCategorias, categorias} =
+    useProduct();
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [isUpdateMode, setIsUpdateMode] = useState();
+  const [isTipoModalOpen, setIsTipoModalOpen] = useState(false);
+  const [isCategoriaModalOpen, setIsCategoriaModalOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     // Define aquí los campos de tu formulario y sus valores iniciales
     nombre: "",
     tipo: "",
+    categoria: "",
     precio: "",
   });
 
@@ -32,6 +36,7 @@ function ProductPageForm({ id }) {
         setValue("image", product.image);
         setValue("nombre", product.nombre);
         setValue("tipo", product.tipo);
+        setValue("categoria", product.categoria);
         setValue("precio", product.precio);
       }
     }
@@ -39,6 +44,7 @@ function ProductPageForm({ id }) {
   }, []);
 
   const onSubmit = handleSubmit((data) => {
+    console.log(data);
     if (id) {
       updateProducto(id, data);
       setIsUpdateMode(false);
@@ -67,6 +73,19 @@ function ProductPageForm({ id }) {
     }
     return () => clearTimeout(timeout);
   }, [mostrarMensaje]);
+
+  const openTipoModal = () => {
+    setIsTipoModalOpen(true);
+  };
+
+  const openCategoriaModal = ()=>{
+    setIsCategoriaModalOpen(true)
+  }
+
+  useEffect(() => {
+    getTipos();
+    getCategorias()
+  }, []);
 
   return (
     <div className="">
@@ -109,9 +128,16 @@ function ProductPageForm({ id }) {
               )}
             </div>
             <div className="mb-4">
-              <label className="block text-black text-sm font-bold mb-2">
-                Tipo
-              </label>
+              <div>
+                <label className="block text-black text-sm font-bold mb-2">
+                  Tipo
+                </label>
+                <GrAdd
+                  size={32}
+                  onClick={openTipoModal}
+                  style={{ color: "blue" }}
+                />
+              </div>
               {isUpdateMode ? (
                 <select
                   {...register("tipo")}
@@ -120,12 +146,11 @@ function ProductPageForm({ id }) {
                   onChange={handleChange}
                 >
                   <option value="">-- Selecciona --</option>
-                  <option value="Paletas">Paletas</option>
-                  <option value="Nieves">Nieves</option>
-                  <option value="Malteadas">Maltedas</option>
-                  <option value="Nachos">Nachos</option>
-                  <option value="Aguas">Aguas</option>
-                  <option value="Otros">Otros</option>
+                  {tipos.map((tipo) => (
+                    <option key={tipo._id} value={tipo.nombre}>
+                      {tipo.nombre}
+                    </option>
+                  ))}
                 </select>
               ) : (
                 <select
@@ -133,11 +158,49 @@ function ProductPageForm({ id }) {
                   className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 >
                   <option value="">-- Selecciona --</option>
-                  <option value="Paletas">Paletas</option>
-                  <option value="Nieves">Nieves</option>
-                  <option value="Malteadas">Maltedas</option>
-                  <option value="Nachos">Nachos</option>
-                  <option value="Aguas">Aguas</option>
+                  {tipos.map((tipo) => (
+                    <option key={tipo._id} value={tipo.nombre}>
+                      {tipo.nombre}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-black text-sm font-bold mb-2">
+                Categoria
+              </label>
+              <GrAdd
+                size={32}
+                onClick={openCategoriaModal}
+                style={{ color: "blue" }}
+              />
+              {isUpdateMode ? (
+                <select
+                  {...register("categoria")}
+                  className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  value={formData.categoria}
+                  onChange={handleChange}
+                >
+                  <option value="">-- Selecciona --</option>
+                  {categorias.map((categoria) => (
+                    <option key={categoria._id} value={categoria.nombre}>
+                      {categoria.nombre}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <select
+                  {...register("categoria")}
+                  className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                >
+                  <option value="">-- Selecciona --</option>
+                  {categorias.map((categoria) => (
+                    <option key={categoria._id} value={categoria.nombre}>
+                      {categoria.nombre}
+                    </option>
+                  ))}
                 </select>
               )}
             </div>
@@ -171,6 +234,19 @@ function ProductPageForm({ id }) {
               </button>
             </div>
           </form>
+          <ModalAgregarTipo
+            isOpenTipo={isTipoModalOpen}
+            onCloseTipo={() => {
+              setIsTipoModalOpen(false);
+            }}
+          />
+
+          <ModalAgregarCategoria
+            isOpenCategoria={isCategoriaModalOpen}
+            onCloseCategoria={() => {
+              setIsCategoriaModalOpen(false);
+            }}
+          />
         </div>
       </div>
     </div>

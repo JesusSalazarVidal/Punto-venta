@@ -14,8 +14,8 @@ function ProductCard({ product }) {
 
   const cardClassName = `relative p-4 shadow-lg cursor-pointer rounded:md border transform transition-transform
    ${
-    isSelected ? "scale-125 bg-blue-300 " : "bg-pink-300 hover:bg-purple-300"
-  }`;
+     isSelected ? "scale-125 bg-blue-300 " : "bg-pink-300 hover:bg-purple-300"
+   }`;
 
   function handleAgregarProducto() {
     const nuevoProducto = { ...product };
@@ -62,8 +62,10 @@ function ProductCard({ product }) {
   return (
     <>
       <div onClick={handleAgregarProducto} className={cardClassName}>
-      <h1 className="text-2xl font-bold">{product.nombre}</h1>
-  <h2 className="text-blue-500 text-3xl font-bold mt-3">${product.precio}</h2>
+        <h1 className="text-2xl font-bold">{product.nombre}</h1>
+        <h2 className="text-blue-500 text-3xl font-bold mt-3">
+          ${product.precio}
+        </h2>
       </div>
     </>
   );

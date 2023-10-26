@@ -6,6 +6,7 @@ import {
   deleteIngreso,
   updateIngreso,
   getIngresosByFecha,
+  getIngresosEntreFechas,
 } from "../controllers/ingreso.controller.js";
 
 import {authRequired} from '../middlewares/validateToken.js'
@@ -20,5 +21,6 @@ router.get('/obtenerIngreso/:id', authRequired, getIngreso)
 router.put('/actualizarIngreso/:id', authRequired, updateIngreso)
 router.delete('/eliminarIngreso/:id', authRequired, deleteIngreso)
 router.get('/obtenerIngresosByFecha/:fecha', authRequired, getIngresosByFecha)
+router.get('/obtenerIngresosEntreFechas/:fechaInicio/:fechaFin', authRequired, getIngresosEntreFechas)
 
 export default router;

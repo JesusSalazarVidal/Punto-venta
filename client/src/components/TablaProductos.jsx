@@ -79,6 +79,7 @@ function TablaProductos({ data }) {
               <th className="py-2 px-2 md:px-4 lg:px-6">Nombre</th>
               {/* Ajusta el padding en diferentes tamaños de pantalla */}
               <th className="py-2 px-2 md:px-4 lg:px-6">Tipo</th>
+              <th className="py-2 px-2 md:px-4 lg:px-6">Categoria</th>
               <th className="py-2 px-2 md:px-4 lg:px-6">Precio</th>
               <th className="py-2 px-2 md:px-4 lg:px-6">Fecha</th>
               <th className="py-2 px-2 md:px-4 lg:px-6">Acciones</th>
@@ -95,6 +96,7 @@ function TablaProductos({ data }) {
                   </td>{" "}
                   {/* Ajusta el padding en diferentes tamaños de pantalla */}
                   <td className="py-2 px-2 md:px-4 lg:px-6">{registro.tipo}</td>
+                  <td className="py-2 px-2 md:px-4 lg:px-6">{registro.categoria}</td>
                   <td className="py-2 px-2 md:px-4 lg:px-6">
                     {registro.precio}
                   </td>

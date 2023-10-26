@@ -4,11 +4,13 @@ import { useVentas } from "../Context/VentasContext";
 import TablaCuenta from "../components/TablaCuenta";
 import TiposProducto from "../components/TiposProducto";
 import ModalTransaccion from '../components/ModalTransaccion'
+import { useProduct } from "../Context/ProductContext";
 
 function HomePage() {
   const { createVenta, mensaje, cuenta, mensajeError, setMensajeError, setMensaje} = useVentas();
   const ingreso = { cantidad: cuenta.total };
   const { createIngreso } = useIngresos();
+  const {getTipos, tipos}= useProduct()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
 
@@ -25,7 +27,7 @@ function HomePage() {
     setIsModalOpen(false);
   };
 
-
+/*
   const tipos = [
     { id: 1, tipo: "Paletas" },
     { id: 2, tipo: "Nieves" },
@@ -34,6 +36,11 @@ function HomePage() {
     { id: 5, tipo: "Aguas" },
     { id: 6, tipo: "Otros" },
   ];
+  */
+
+  useEffect(()=>{
+    getTipos()
+  })
 
   return (
     <div className="flex flex-col md:flex-row mt-16">
@@ -41,7 +48,7 @@ function HomePage() {
       <div className="w-full md:w-4/6 p-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {tipos.map((tipo) => (
-            <TiposProducto key={tipo.id} tipo={tipo.tipo} />
+            <TiposProducto key={tipo._id} tipo={tipo.nombre} />
           ))}
         </div>
       </div>

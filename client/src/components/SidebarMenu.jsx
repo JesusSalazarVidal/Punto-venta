@@ -1,22 +1,27 @@
-import { Link } from 'react-router-dom';
 import { TiChartLine } from "react-icons/ti";
 import { CgShoppingBag } from "react-icons/cg";
-import { TbBusinessplan, TbCoin, TbShoppingBagPlus, TbCoins, TbPremiumRights } from "react-icons/tb";
+import {
+  TbBusinessplan,
+  TbCoin,
+  TbShoppingBagPlus,
+  TbCoins,
+  TbPremiumRights,
+} from "react-icons/tb";
 import { BsFillPersonFill } from "react-icons/bs";
 import React, { useState } from "react";
 import ProductPage from "../pages/ProductPage";
 import VentasPage from "../pages/VentasPage";
-import EgresosPage from '../pages/EgresosPage';
-import IngresosPage from '../pages/IngresosPage';
-import UsuariosPage from '../pages/UsuariosPage'; 
-import Logo from "../img/logo.png"
-import ProductPageForm from '../pages/ProductPageForm';
+import EgresosPage from "../pages/EgresosPage";
+import IngresosPage from "../pages/IngresosPage";
+import UsuariosPage from "../pages/UsuariosPage";
+import EstadisticosPage from "../pages/EstadisticosPage";
+import Logo from "../img/logo.png";
+import ProductPageForm from "../pages/ProductPageForm";
 import EgresoFormPage from "../pages/EgresoFormPage";
-import IngresosFormPage from "../pages/IngresosFormPage"
-import { RiAddFill } from "react-icons/ri"
-import ResumenGeneral from '../pages/ResumenGeneral';
-
-
+import IngresosFormPage from "../pages/IngresosFormPage";
+import { RiAddFill } from "react-icons/ri";
+import ResumenGeneral from "../pages/ResumenGeneral";
+import { BsFileBarGraph } from "react-icons/bs";
 
 function SidebarMenu() {
   const [activeTab, setActiveTab] = useState(null); // Estado para rastrear la pestaña activa
@@ -96,17 +101,29 @@ function SidebarMenu() {
                 <span className="p-2 font-bold">Usuarios</span>
               </a>
             </li>
+
+            <li>
+              <a
+                href="#"
+                className={`flex items-center p-2 mt-2 text-gray-900 rounded-lg dark:text-white hover:bg-pink-500 dark:hover:bg-gray-700 group ${
+                  activeTab === "usuarios" ? "bg-purple-500" : ""
+                }`}
+                onClick={() => handleTabClick("estadisticos")}
+              >
+                <BsFileBarGraph className="flex-shrink-0 w-5 h-5  transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-purple-950" />
+                <span className="p-2 font-bold">Estadísticos</span>
+              </a>
+            </li>
           </ul>
         </div>
       </aside>
-      
 
       {/* Contenido principal */}
       <div className="mt-16 sm:ml-64">
         {!activeTab && (
-          <div className=' mt-20'>
+          <div className=" mt-20">
             {/* Aquí coloca el contenido principal */}
-           {/*  <h1 className='font-bold text-center p-10 text-3xl'> ~ Bienvenido ~  </h1> */}
+            {/*  <h1 className='font-bold text-center p-10 text-3xl'> ~ Bienvenido ~  </h1> */}
             {/* <img className="mx-auto w-1/2 h-auto" src={Logo} /> */}
             <ResumenGeneral />
           </div>
@@ -146,6 +163,12 @@ function SidebarMenu() {
           </div>
         )}
 
+        {activeTab === "estadisticos" && (
+          <div>
+            {/* Aquí coloca el contenido específico de la página de Ventas */}
+            <EstadisticosPage />
+          </div>
+        )}
       </div>
     </div>
   );
