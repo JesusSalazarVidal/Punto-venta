@@ -28,6 +28,7 @@ export const useProduct = () => {
 export function ProductProvider({ children }) {
     const [producto, setProducto] = useState([]);
     const [categoriaProductos, setCategoriaProductos] = useState([])
+    
 
     const getProductos = async () => {
         try {
@@ -71,10 +72,19 @@ export function ProductProvider({ children }) {
         }
     }
     
-    const getProductosByTipo = async(tipo) => {
+    const getProductosByTipo = async(tipo, setProductsOrder) => {
         try {
             const res = await getProductoByTipoRequest(tipo)
-            setProducto(res.data)
+            console.log("Respuesta del servidor:", res.data);
+
+        // Filtrar los productos por tipo
+        //const productosFiltrados = res.data.filter((product) => product.tipo === tipo);
+       //console.log("Productos filtrados:", productosFiltrados);
+        //setProducto(productosFiltrados);
+        setProductsOrder(res.data);
+            //setProducto(res.data)
+            //const newProductsOrder = res.data; // Supongo que la respuesta del servidor es un array de productos
+            //setProductsOrder(newProductsOrder);
         } catch (error) {
             console.error(error)
         }

@@ -6,12 +6,15 @@ import TiposProducto from "../components/TiposProducto";
 import ModalTransaccion from '../components/ModalTransaccion'
 import { useProduct } from "../Context/ProductContext";
 
+
 function HomePage() {
+  const [productsOrder, setProductsOrder] = useState([]); // Estado para el orden de los productos
   const { createVenta, mensaje, cuenta, mensajeError, setMensajeError, setMensaje} = useVentas();
   const ingreso = { cantidad: cuenta.total };
   const { createIngreso } = useIngresos();
   const {getTipos, tipos}= useProduct()
   const [isModalOpen, setIsModalOpen] = useState(false)
+
 
 
   const openModal = () => {
@@ -40,16 +43,23 @@ function HomePage() {
 
   useEffect(()=>{
     getTipos()
-  })
+  },[])
+  console.log(tipos)
 
+ console.log("home productsorder",productsOrder)
   return (
     <div className="flex flex-col md:flex-row mt-16">
-      {/* División izquierda (4/6 de la pantalla) */}
+      {/* División izquierda (4/6 de la pantalla) */} 
       <div className="w-full md:w-4/6 p-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {tipos.map((tipo) => (
-            <TiposProducto key={tipo._id} tipo={tipo.nombre} />
-          ))}
+            
+            <TiposProducto 
+            key={tipo._id} 
+            tipo={tipo.nombre} 
+            productsOrder={productsOrder} 
+            setProductsOrder={setProductsOrder} />
+          ))}      
         </div>
       </div>
 
