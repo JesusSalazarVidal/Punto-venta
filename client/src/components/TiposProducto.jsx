@@ -6,6 +6,7 @@ import Nachos from '../img/Nachos.png'
 import Nieves from '../img/Nieves.png'
 import Aguas from '../img/Aguas.png'
 import Otros from '../img/Otros.png'
+import Preparados from '../img/Preparados.png'
 import Ejem from "./Ejem";
 
 
@@ -16,6 +17,7 @@ const tipoImagenes = {
   Nieves,
   Aguas,
   Otros,
+  Preparados,
 };
 
 function TiposProducto({tipo}) {
