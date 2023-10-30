@@ -216,7 +216,7 @@ function ProductPageForm({ id }) {
               </div>
               <button
                 type="button"
-                onClick={openTipoModal}
+                onClick={openCategoriaModal}
                 className="shadow bg-pink-500 hover:bg-pink-400 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded ml-2 mb-3"
               >
                 Agregar
