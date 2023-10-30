@@ -35,7 +35,7 @@ function VentaPage() {
     getProductos()
   }, [])
 
-  if (venta.length === 0) return (<h1>No Hay Ventas</h1>)
+ // if (venta.length === 0) return (<h1>No Hay Ventas</h1>)
 
   return (
    <div className='sm:ml-64'>

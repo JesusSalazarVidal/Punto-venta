@@ -21,8 +21,8 @@ function ResumenGeneral({ data, tipo, dataVenta }) {
     getVentas();
   }, []);
 
-  if (ingresos.length === 0) return <h1>No hay Ingresos disponibles</h1>; 
-  if(egresos.length === 0) return(<h1>No hay egresos disponibles</h1>)
+  //if (ingresos.length === 0) return <h1>No hay Ingresos disponibles</h1>; 
+  //if(egresos.length === 0) return(<h1>No hay egresos disponibles</h1>)
 
   return (
         <div>

@@ -15,7 +15,7 @@ function IngresosPage() {
     getIngresosByFecha(fecha);
   };
 
-  if (ingresos.length === 0) return <h1>No hay Ingresos disponibles</h1>;
+  //if (ingresos.length === 0) return <h1>No hay Ingresos disponibles</h1>;
   //console.log(ingresos)
 
   return (

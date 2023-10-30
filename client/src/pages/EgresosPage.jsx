@@ -19,17 +19,17 @@ function EgresosPage() {
     getEgresosByFecha(fecha);
   };
 
-  if(egresos.length === 0) return(<h1>No hay egresos disponibles</h1>)
+  //if(egresos.length === 0) return(<h1>No hay egresos disponibles</h1>)
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-center p-3 md:mt-0">Egresos</h1>
-      <div className="flex">
-        <BuscadorReporte onSearch={handleSearch} />
-        <ReportePDF data={egresos}></ReportePDF>
-      </div>
-      <Tabla data={egresos} tipo={'Egresos'}></Tabla>
+    <h1 className="text-3xl font-bold text-center p-3 md:mt-0">Egresos</h1>
+    <div className="flex">
+      <BuscadorReporte onSearch={handleSearch} />
+      <ReportePDF data={egresos} />
     </div>
+    <Tabla data={egresos} tipo={'Egresos'} />
+  </div>
   );
 }
 
