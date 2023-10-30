@@ -44,7 +44,7 @@ function HomePage() {
   useEffect(()=>{
     getTipos()
   },[])
-  console.log(tipos)
+  //console.log(tipos)
 
  console.log("home productsorder",productsOrder)
   return (
