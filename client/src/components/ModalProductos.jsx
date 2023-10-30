@@ -4,9 +4,10 @@ import ProductCard from "./ProductCard";
 import { useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
-function ModalProductos({ isOpen, onClose, tipo, productsOrder, setProductsOrder }) {
+function ModalProductos({ isOpen, onClose, tipo }) {
 
   const Categoria = ["Agua", "Leche"];
+  const [orderedProducts, setOrderedProducts] = useState([]);
   const [categoriaSelected, setCategoriaSelected] = useState(null);
 
   const {
@@ -18,52 +19,39 @@ function ModalProductos({ isOpen, onClose, tipo, productsOrder, setProductsOrder
     categorias,
   } = useProduct();
 
-  
- console.log("modal productorder", productsOrder)
 
   useEffect(() => {
     if (isOpen) {
       //getProductosByTipo(tipo);
-      getProductosByTipo(tipo, setProductsOrder);
+      getProductosByTipo(tipo);
       getCategoriasByTipo(tipo);
+      // Solo inicializa el estado la primera vez que se abre el modal
+      if (orderedProducts.length === 0) {
+        const initialOrderedProducts = [...categoriaProductos];
+        setOrderedProducts(initialOrderedProducts);}
 
     }
-  }, [tipo,isOpen]);
- 
-  
+  }, [tipo,isOpen, categoriaProductos]);
+
   //const [productsOrder, setProductsOrder] = useState([]);
-{/*useEffect(() => {
-  if (producto) {
-    setProductsOrder(producto);
+useEffect(() => {
+  if (categoriaProductos) {
+    setOrderedProducts(categoriaProductos);
   }
-}, [producto]); */}
+}, [categoriaProductos]); 
 
-
-
-  const handleDragStart = (e, index) => {
-    e.dataTransfer.setData("index", index);
-  };
-
-  const handleDragOver = (e, index) => {
-    e.preventDefault();
-  };
-
-
-  const handleDrop = (e, newIndex) => {
-    e.preventDefault();
-    const draggedIndex = e.dataTransfer.getData("index");
-    const newProductsOrder = [...productsOrder];
-    console.log("uno",productsOrder)
-    const [draggedProduct] = newProductsOrder.splice(draggedIndex, 1);
-    newProductsOrder.splice(newIndex, 0, draggedProduct);
-    
-    // Actualiza el estado en el componente principal
-    setProductsOrder(newProductsOrder);
-    console.log("new",newProductsOrder)
-  };
+const handleProductReorder = (startIndex, endIndex) => {
+  const updatedProducts = [...orderedProducts];
+  console.log("update orden", updatedProducts)
+  const [movedProduct] = updatedProducts.splice(startIndex, 1);
+  updatedProducts.splice(endIndex, 0, movedProduct);
+  setOrderedProducts(updatedProducts);
+  console.log("ordenado", updatedProducts)
+};
 
   if (!isOpen) return null;
-  console.log("map productorder", productsOrder)
+ 
+console.log("map orden", orderedProducts)
   return (
     <div className="fixed inset-0 flex items-center z-50">
       <div className="modal-overlay" onClick={onClose}></div>
@@ -96,9 +84,21 @@ function ModalProductos({ isOpen, onClose, tipo, productsOrder, setProductsOrder
                   <h1> {categoria.nombre} </h1>
                 </div>
               ))
-            : categoriaProductos &&
-              categoriaProductos.map((product) => (
-                <ProductCard product={product} key={product._id} />
+            : orderedProducts &&
+            orderedProducts.map((product, index) => (
+                <div
+                 
+                key={product._id}
+                draggable
+                onDragStart={(e) => e.dataTransfer.setData("text/plain", index)}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  const startIndex = e.dataTransfer.getData("text/plain");
+                  handleProductReorder(Number(startIndex), index);
+                }}
+                >
+                <ProductCard product={product} />
+                </div>
               ))}
           {/*
           {productsOrder && 

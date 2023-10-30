@@ -18,9 +18,9 @@ const tipoImagenes = {
   Otros,
 };
 
-function TiposProducto({tipo, productsOrder, setProductsOrder}) {
+function TiposProducto({tipo}) {
   
-console.log("tipo productsOrder", productsOrder)
+
   //const [isModalOpen, setModalOpen] = useState(false);
   // rastrear si el elemento esta seleccionado
   const [isSelected, setIsSelected] = useState(false);
@@ -34,7 +34,7 @@ console.log("tipo productsOrder", productsOrder)
     setIsModalOpen(true);
     setIsSelected(true);
     setSelectedTipo(tipo); // Establece el tipo seleccionado al abrir el modal
-    setProductsOrder([...productsOrder]); // Clonar el orden de los productos
+    //setProductsOrder([...productsOrder]); // Clonar el orden de los productos
   
   };
 
@@ -67,8 +67,7 @@ console.log("tipo productsOrder", productsOrder)
      // isOpen={isModalOpen}
         onClose={closeModal}
         tipo={tipo} 
-        productsOrder={productsOrder}
-        setProductsOrder={setProductsOrder} // Asegúrate de que se pase aquí
+         
       /> 
     </>
   );
