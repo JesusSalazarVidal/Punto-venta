@@ -62,13 +62,13 @@ function TipoFormPage({ idTipo }) {
               onSubmit={onSubmit}
               className="bg-pink-200 shadow-md rounded px-8 pt-6 pb-8 border-2 border-pink-800"
             >
-              <div className="mb-4">
+              <div className="">
                 <h1 className="text-center font-black">
                   {/* {isUpdateMode ? (  "Agregar Ingreso" ) : ( "Editar ingreso" )} */}
                 </h1>
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
+                <label className="block text-black text-sm font-bold mb-2">
                   Nombre
                 </label>
                   

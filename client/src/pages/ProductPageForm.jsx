@@ -8,8 +8,15 @@ import ModalAgregarCategoria from "../components/ModalAgregarCategoria";
 
 function ProductPageForm({ id }) {
   const { register, handleSubmit, setValue } = useForm();
-  const { createProducto, getProducto, updateProducto, getTipos, tipos, getCategorias, categorias} =
-    useProduct();
+  const {
+    createProducto,
+    getProducto,
+    updateProducto,
+    getTipos,
+    tipos,
+    getCategorias,
+    categorias,
+  } = useProduct();
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [isUpdateMode, setIsUpdateMode] = useState();
   const [isTipoModalOpen, setIsTipoModalOpen] = useState(false);
@@ -78,13 +85,13 @@ function ProductPageForm({ id }) {
     setIsTipoModalOpen(true);
   };
 
-  const openCategoriaModal = ()=>{
-    setIsCategoriaModalOpen(true)
-  }
+  const openCategoriaModal = () => {
+    setIsCategoriaModalOpen(true);
+  };
 
   useEffect(() => {
     getTipos();
-    getCategorias()
+    getCategorias();
   }, []);
 
   return (
@@ -127,82 +134,93 @@ function ProductPageForm({ id }) {
                 />
               )}
             </div>
-            <div className="mb-4">
-              <div>
-                <label className="block text-black text-sm font-bold mb-2">
-                  Tipo
-                </label>
-                <GrAdd
+            <label className="block text-black text-sm font-bold mb-2">
+              Tipo
+            </label>
+            <div className="mb-4 flex items-center">
+              <div className="flex w-4/5 items-center">
+                {isUpdateMode ? (
+                  <select
+                    {...register("tipo")}
+                    className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    value={formData.tipo}
+                    onChange={handleChange}
+                  >
+                    <option value="">-- Selecciona --</option>
+                    {tipos.map((tipo) => (
+                      <option key={tipo._id} value={tipo.nombre}>
+                        {tipo.nombre}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <select
+                    {...register("tipo")}
+                    className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  >
+                    <option value="">-- Selecciona --</option>
+                    {tipos.map((tipo) => (
+                      <option key={tipo._id} value={tipo.nombre}>
+                        {tipo.nombre}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={openTipoModal}
+                className="shadow bg-pink-500 hover:bg-pink-400 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded ml-2 mb-3"
+              >
+                Agregar
+              </button>
+              {/*} <GrAdd
                   size={32}
                   onClick={openTipoModal}
                   style={{ color: "blue" }}
-                />
-              </div>
-              {isUpdateMode ? (
-                <select
-                  {...register("tipo")}
-                  className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                  value={formData.tipo}
-                  onChange={handleChange}
-                >
-                  <option value="">-- Selecciona --</option>
-                  {tipos.map((tipo) => (
-                    <option key={tipo._id} value={tipo.nombre}>
-                      {tipo.nombre}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <select
-                  {...register("tipo")}
-                  className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                >
-                  <option value="">-- Selecciona --</option>
-                  {tipos.map((tipo) => (
-                    <option key={tipo._id} value={tipo.nombre}>
-                      {tipo.nombre}
-                    </option>
-                  ))}
-                </select>
-              )}
+                  className="pl-2 ml-5 mb-2"
+                  /> */}
             </div>
-
-            <div className="mb-4">
-              <label className="block text-black text-sm font-bold mb-2">
-                Categoria
-              </label>
-              <GrAdd
-                size={32}
-                onClick={openCategoriaModal}
-                style={{ color: "blue" }}
-              />
-              {isUpdateMode ? (
-                <select
-                  {...register("categoria")}
-                  className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                  value={formData.categoria}
-                  onChange={handleChange}
-                >
-                  <option value="">-- Selecciona --</option>
-                  {categorias.map((categoria) => (
-                    <option key={categoria._id} value={categoria.nombre}>
-                      {categoria.nombre}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <select
-                  {...register("categoria")}
-                  className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                >
-                  <option value="">-- Selecciona --</option>
-                  {categorias.map((categoria) => (
-                    <option key={categoria._id} value={categoria.nombre}>
-                      {categoria.nombre}
-                    </option>
-                  ))}
-                </select>
-              )}
+            <label className="block text-black text-sm font-bold mb-2">
+              Categoria
+            </label>
+            <div className="mb-4 flex items-center">
+              <div className="flex w-4/5 items-center">
+                {isUpdateMode ? (
+                  <select
+                    {...register("categoria")}
+                    className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    value={formData.categoria}
+                    onChange={handleChange}
+                  >
+                    <option value="">-- Selecciona --</option>
+                    {categorias.map((categoria) => (
+                      <option key={categoria._id} value={categoria.nombre}>
+                        {categoria.nombre}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <select
+                    {...register("categoria")}
+                    className=" shadow appearance-none border border-pink-700 rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  >
+                    <option value="">-- Selecciona --</option>
+                    {categorias.map((categoria) => (
+                      <option key={categoria._id} value={categoria.nombre}>
+                        {categoria.nombre}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={openTipoModal}
+                className="shadow bg-pink-500 hover:bg-pink-400 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-4 rounded ml-2 mb-3"
+              >
+                Agregar
+              </button>
             </div>
 
             <div className="mb-4">
