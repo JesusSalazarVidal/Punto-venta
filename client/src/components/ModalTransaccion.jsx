@@ -12,34 +12,7 @@ function ModalTransaccion({ isOpen, onClose, venta }) {
   const ingreso = { cantidad: venta.total };
   const { createVenta, setMensajeError, mensajeError } = useVentas();
   const { createIngreso } = useIngresos();
-
-  const handleGuardar = (venta) => {
-    setCantidadRecibida("");
-    setCambio(0);
-    createVenta(venta);
-    console.log(venta.total);
-    createIngreso(ingreso);
-    onClose();
-  };
-
-  const handleFinalizarCompra = (venta) => {
-    if (venta.total > cantidadRecibida) {
-      setCantidadRecibida("");
-      setCambio(0);
-      createVenta(venta);
-      // Crear un objeto de ingreso con las especificaciones
-      const ingreso = {
-        cantidad: venta.total, // Utilizar el total de la venta como cantidad
-        fecha: venta.fecha, // Utilizar la misma fecha de la venta
-        descripcion: "Ingreso generado por una venta",
-      };
-      createIngreso(ingreso);
-      onClose();
-    }else{
-      setMensajeError("La cantidad ingresada no puede ser menor que el total")
-    }
-  };
-
+ 
   const handleCantidadCambio = (event) => {
     const value = parseFloat(event.target.value);
     setCantidadRecibida(value);
@@ -109,8 +82,6 @@ function ModalTransaccion({ isOpen, onClose, venta }) {
         <div className="flex justify-center mt-4">
           <button
             onClick={()=>{
-              console.log(venta.total)
-              console.log(cantidadRecibida)
               if (cantidadRecibida >= venta.total) {
                 setCantidadRecibida("");
                 setCambio(0);
