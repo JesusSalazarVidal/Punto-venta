@@ -23,6 +23,11 @@ const ventaSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
         required: true
+    },
+    usuario:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Usuario",
+        required: true,
     }
 },{timestamps: true,});
 

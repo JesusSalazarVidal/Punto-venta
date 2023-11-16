@@ -13,6 +13,7 @@ export const getEgresos = async (req, res) => {
 };
 
 export const crearEgreso = async (req, res) => {
+  //console.log(req.user.id)
   try {
     const { cantidad, descripcion } = req.body;
     const newEgreso = new Egreso({

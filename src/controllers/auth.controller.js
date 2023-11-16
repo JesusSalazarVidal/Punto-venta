@@ -5,7 +5,7 @@ import {TOKEN_SECRET} from '../config.js'
 import { createAccessToken } from "../libs/jwt.js";
 
 export const register = async (req, res) => {
-  const { nombreUsuario, nombre, password, huella } = req.body;
+  const { nombreUsuario, nombre, password,sucursal, huella } = req.body;
 
   try {
     const userFound = await Usuario.findOne({ nombre });
@@ -20,6 +20,7 @@ export const register = async (req, res) => {
       nombreUsuario: nombreUsuario,
       nombre: nombre,
       password: passwordHash,
+      sucursal: sucursal,
       huella: huella,
     });
 
@@ -31,6 +32,7 @@ export const register = async (req, res) => {
       id: userSaved._id,
       nombreUsuario: userSaved.nombreUsuario,
       nombre: userSaved.nombre,
+      sucursal: userSaved.sucursal,
       createdAt: userSaved.createdAt,
       updatedAt: userSaved.updatedAt,
     });

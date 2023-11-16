@@ -11,11 +11,11 @@ import {
 
 const router = Router();
 
-router.get("/obtenerVentas", getVentas);
-router.get("/obtenerVenta/:id", getVenta);
-router.get("/obtenerVentasByFecha/:fecha", getVentasByFecha);
-router.post("/crearVenta", createVenta);
-router.put("/actualizarVenta/:id", updateVenta);
-router.delete("/eliminarVenta/:id", deleteVenta);
+router.get("/obtenerVentas", authRequired, getVentas);
+router.get("/obtenerVenta/:id", authRequired, getVenta);
+router.get("/obtenerVentasByFecha/:fecha", authRequired, getVentasByFecha);
+router.post("/crearVenta", authRequired, createVenta);
+router.put("/actualizarVenta/:id", authRequired, updateVenta);
+router.delete("/eliminarVenta/:id", authRequired, deleteVenta);
 
 export default router

@@ -9,6 +9,7 @@ import egresoRoutes from './routes/egreso.routes.js'
 import ventaRoutes from './routes/venta.routes.js' 
 import usuarioRoutes from './routes/usuario.routes.js'
 import ingresoRoutes from './routes/ingreso.routes.js'
+import sucursalRoutes from './routes/sucursal.routes.js'
 
 const app = express()
 
@@ -24,7 +25,8 @@ app.use('/api', authRoutes);
 app.use('/api', productRoutes);
 app.use('/api', egresoRoutes);
 app.use('/api', ventaRoutes);
-app.use('/api/', usuarioRoutes);
-app.use('/api', ingresoRoutes)
+app.use('/api', usuarioRoutes);
+app.use('/api', ingresoRoutes);
+app.use('/api', sucursalRoutes);
 
 export default app

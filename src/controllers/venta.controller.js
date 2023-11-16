@@ -50,13 +50,14 @@ export const getVentasByFecha = async (req, res) =>{
 }
 
 export const createVenta = async (req, res) => {
-    console.log("hola")
     const {productos, total} = req.body
+    console.log(req.user)
 
     // crear una nueva venta 
     const newVenta = new Venta ({
         productos: productos,
-        total: total
+        total: total,
+        usuario: req.user.id
     });
     
     const savedVenta = await newVenta.save()
